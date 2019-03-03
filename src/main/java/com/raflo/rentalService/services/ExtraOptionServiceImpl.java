@@ -24,7 +24,6 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
     public ExtraOption createExtraOption(ExtraOptionCategory extraOptionCategory) {
         ExtraOption extraOption = new ExtraOption(extraOptionCategory);
         return extraOptionRepository.save(extraOption);
-
     }
 
     @Override
