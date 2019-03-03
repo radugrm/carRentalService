@@ -3,7 +3,7 @@ package com.raflo.rentalService.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "CLIENTS")
 public class Client {
 
     @Id
