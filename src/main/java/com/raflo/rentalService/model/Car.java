@@ -25,6 +25,26 @@ public class Car {
     @Column (name = "price")
     private int price;
 
+    @Column (name = "availability")
+    private boolean availability;
+
+
+    public Car(String brand, String model, CarCategory carCategory, String numberPlate) {
+        this.brand = brand;
+        this.model = model;
+        this.carCategory = carCategory;
+        this.numberPlate = numberPlate;
+        this.availability=false;
+    }
+
+    public boolean isAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
     public long getId() {
         return id;
     }
