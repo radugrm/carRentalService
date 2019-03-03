@@ -1,6 +1,7 @@
 package com.raflo.rentalService.controllers;
 
 
+import com.raflo.rentalService.controllers.dto.DeleteCarFormDto;
 import com.raflo.rentalService.controllers.dto.DeleteClientFormDto;
 import com.raflo.rentalService.controllers.dto.NewCarFormDto;
 import com.raflo.rentalService.controllers.dto.NewClientFormDto;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+import static com.raflo.rentalService.controllers.dto.DeleteCarFormDto.DELETE_CAR_FORM;
 import static com.raflo.rentalService.controllers.dto.DeleteClientFormDto.DELETE_CLIENT_FORM;
 import static com.raflo.rentalService.controllers.dto.NewCarFormDto.NEW_CAR_FORM;
-import static com.raflo.rentalService.controllers.dto.NewClientFormDto.NEW_CLIENT_FORM;
+
 
 @Controller
 @RequestMapping("/cars")
@@ -34,13 +36,19 @@ public class CarController {
         model.addAttribute("carList", cars);
         model.addAttribute("carCategoryOptions", CarCategoryEnum.values());
         model.addAttribute(NEW_CAR_FORM, new NewCarFormDto());
-//        model.addAttribute(DELETE_CLIENT_FORM, new DeleteClientFormDto());
+        model.addAttribute(DELETE_CAR_FORM, new DeleteCarFormDto());
         return "cars/cars_page";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String createCar(@ModelAttribute(NEW_CAR_FORM) NewCarFormDto form) {
         carService.createCar(form.getMake(),form.getModel(),form.getCarCategory(),form.getNumberPlate());
+        return "redirect:/cars";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteCar (@ModelAttribute(DELETE_CAR_FORM) DeleteCarFormDto form){
+        carService.deleteCarById(form.getCarId());
         return "redirect:/cars";
     }
 }

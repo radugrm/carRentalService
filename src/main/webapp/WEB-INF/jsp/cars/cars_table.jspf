@@ -9,6 +9,8 @@
         <th scope="col">Number Plate</th>
         <th scope="col">Category</th>
         <th scope="col">Price/day</th>
+        <th scope="col">Availability</th>
+
         <th></th>
     </tr>
     </thead>
@@ -21,14 +23,16 @@
             <td>${car.numberPlate}</td>
             <td>${car.carCategory}</td>
             <td>${car.price}</td>
-            <%--<td>--%>
-                <%--<form:form cssClass="form-inline" method="post" action="/clients/delete" modelAttribute="deleteClientForm">--%>
-                    <%--<form:hidden path="clientId" value="${client.id}" />--%>
-                    <%--<form:button type="submit" class="btn btn-danger delete-client-btn">--%>
-                        <%--<i class="fa fa-trash" aria-hidden="true"></i>--%>
-                    <%--</form:button>--%>
-                <%--</form:form>--%>
-            <%--</td>--%>
+            <td>${car.availabilityToString}</td>
+
+        <td>
+                <form:form cssClass="form-inline" method="post" action="/cars/delete" modelAttribute="deleteCarForm">
+                    <form:hidden path="carId" value="${car.id}" />
+                    <form:button type="submit" class="btn btn-danger delete-client-btn">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </form:button>
+                </form:form>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

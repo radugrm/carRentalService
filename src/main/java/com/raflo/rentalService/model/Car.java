@@ -96,5 +96,10 @@ public class Car {
         return price;
     }
 
+    public String getAvailabilityToString(){
+        if(this.availability) return "available";
+        else return "unavailable";
+    }
+
 
 }
