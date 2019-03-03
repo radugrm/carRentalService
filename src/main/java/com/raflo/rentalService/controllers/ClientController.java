@@ -25,6 +25,7 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.GET)
     public String showClients(Model model) {
         List<Client> clients = clientService.getAllClients();
+
         model.addAttribute("companyName", "RAFLO");
         model.addAttribute("clientList", clients);
         model.addAttribute(NEW_CLIENT_FORM, new NewClientFormDto());
@@ -34,6 +35,6 @@ public class ClientController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String createClient(@ModelAttribute(NEW_CLIENT_FORM) NewClientFormDto form) {
         clientService.createClient(form.getFirstName(), form.getLastName(), form.getCnp(), form.getPhoneNumber());
-        return "redirect:/clients_page";
+        return "redirect:/clients/clients_page";
     }
 }

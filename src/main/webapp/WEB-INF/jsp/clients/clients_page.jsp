@@ -16,6 +16,14 @@
                 <form:label path="lastName" for="last-name" cssClass="sr-only">Last Name</form:label>
                 <form:input path="lastName" id="last-name" type="text" placeholder="Last Name"/>
             </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <form:label path="cnp" for="cnp" cssClass="sr-only">CNP</form:label>
+                <form:input path="cnp" id="cnp" type="text" placeholder="CNP"/>
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <form:label path="phoneNumber" for="phone-number" cssClass="sr-only">Phone Number</form:label>
+                <form:input path="phoneNumber" id="phone-number" type="text" placeholder="Phone Number"/>
+            </div>
             <form:button type="submit" class="btn btn-primary mb-2">Submit</form:button>
         </form:form>
     </div>

@@ -29,13 +29,6 @@ public class Car {
     private boolean availability;
 
 
-    public Car(String brand, String model, CarCategory carCategory, String numberPlate) {
-        this.brand = brand;
-        this.model = model;
-        this.carCategory = carCategory;
-        this.numberPlate = numberPlate;
-        this.availability=false;
-    }
 
     public boolean isAvailability() {
         return availability;

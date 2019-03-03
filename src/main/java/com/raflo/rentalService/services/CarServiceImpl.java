@@ -21,7 +21,13 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car createCar(String brand, String model, CarCategory carCategory, String numberPlate) {
-        Car car = new Car(brand, model, carCategory, numberPlate);
+        Car car = new Car();
+        car.setBrand(brand);
+        car.setModel(model);
+        car.setCarCategory(carCategory);
+        car.setNumberPlate(numberPlate);
+        car.setAvailability(false);
+
         return carRepository.save(car);
     }
 

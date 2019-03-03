@@ -15,12 +15,17 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> getAllClients() {
-        return null;
+        return clientRepository.findAll();
     }
 
     @Override
     public Client createClient(String firstName, String lastName, String cnp, String phoneNumber) {
-        Client client = new Client(cnp, firstName, lastName, phoneNumber);
+        Client client = new Client();
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setCnp(cnp);
+        client.setPhoneNumber(phoneNumber);
+
         return clientRepository.save(client);
     }
 

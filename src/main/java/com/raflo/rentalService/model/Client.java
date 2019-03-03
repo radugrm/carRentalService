@@ -22,12 +22,6 @@ public class Client {
     @Column (name = "phone_number")
     private String phoneNumber;
 
-    public Client(String cnp, String firstName, String lastName, String phoneNumber) {
-        this.cnp = cnp;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-    }
 
     public long getId() {
         return id;

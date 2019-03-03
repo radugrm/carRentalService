@@ -46,9 +46,6 @@ public class ExtraOption {
         }
     }
 
-    public ExtraOption(ExtraOptionCategory extraOptionCategory) {
-        this.extraOptionCategory = extraOptionCategory;
-    }
 
     public int getPrice() {
         return price;
