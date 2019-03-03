@@ -10,14 +10,14 @@ public class Car {
     @GeneratedValue
     private long id;
 
-    @Column (name = "brand")
-    private String brand;
+    @Column (name = "make")
+    private String make;
 
     @Column (name = "model")
     private String model;
 
     @Column (name = "category")
-    private CarCategory carCategory;
+    private CarCategoryEnum carCategory;
 
     @Column (name = "number_plate")
     private String numberPlate;
@@ -46,12 +46,12 @@ public class Car {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getMake() {
+        return make;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setMake(String make) {
+        this.make = make;
     }
 
     public String getModel() {
@@ -62,11 +62,11 @@ public class Car {
         this.model = model;
     }
 
-    public CarCategory getCarCategory() {
+    public CarCategoryEnum getCarCategory() {
         return carCategory;
     }
 
-    public void setCarCategory(CarCategory carCategory) {
+    public void setCarCategory(CarCategoryEnum carCategory) {
         this.carCategory = carCategory;
         switch (carCategory){
             case ECONOMY:

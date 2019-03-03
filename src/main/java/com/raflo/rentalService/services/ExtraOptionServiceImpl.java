@@ -1,8 +1,7 @@
 package com.raflo.rentalService.services;
 
-import com.raflo.rentalService.model.Client;
 import com.raflo.rentalService.model.ExtraOption;
-import com.raflo.rentalService.model.ExtraOptionCategory;
+import com.raflo.rentalService.model.ExtraOptionCategoryEnum;
 import com.raflo.rentalService.repositories.ExtraOptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +20,9 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
     }
 
     @Override
-    public ExtraOption createExtraOption(ExtraOptionCategory extraOptionCategory) {
+    public ExtraOption createExtraOption(ExtraOptionCategoryEnum extraOptionCategoryEnum) {
         ExtraOption extraOption = new ExtraOption();
-        extraOption.setExtraOptionCategory(extraOptionCategory);
+        extraOption.setExtraOptionCategoryEnum(extraOptionCategoryEnum);
 
         return extraOptionRepository.save(extraOption);
     }

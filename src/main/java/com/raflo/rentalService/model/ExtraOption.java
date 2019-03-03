@@ -11,7 +11,7 @@ public class ExtraOption {
     private long id;
 
     @Column (name = "category")
-    private ExtraOptionCategory extraOptionCategory;
+    private ExtraOptionCategoryEnum extraOptionCategoryEnum;
 
     @Column (name = "price")
     private int price;
@@ -24,13 +24,13 @@ public class ExtraOption {
         this.id = id;
     }
 
-    public ExtraOptionCategory getExtraOptionCategory() {
-        return extraOptionCategory;
+    public ExtraOptionCategoryEnum getExtraOptionCategoryEnum() {
+        return extraOptionCategoryEnum;
     }
 
-    public void setExtraOptionCategory(ExtraOptionCategory extraOptionCategory) {
-        this.extraOptionCategory = extraOptionCategory;
-        switch (extraOptionCategory){
+    public void setExtraOptionCategoryEnum(ExtraOptionCategoryEnum extraOptionCategoryEnum) {
+        this.extraOptionCategoryEnum = extraOptionCategoryEnum;
+        switch (extraOptionCategoryEnum){
             case TODDLER_SEAT:
                 this.price=15;
                 break;

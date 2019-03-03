@@ -1,7 +1,7 @@
 package com.raflo.rentalService.services;
 
 import com.raflo.rentalService.model.Car;
-import com.raflo.rentalService.model.CarCategory;
+import com.raflo.rentalService.model.CarCategoryEnum;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface CarService {
 
     List<Car> getAllCars();
 
-    Car createCar(String brand, String model, CarCategory carCategory, String numberPlate);
+    Car createCar(String brand, String model, CarCategoryEnum carCategory, String numberPlate);
 
     void deleteCarById(Long id);
 }

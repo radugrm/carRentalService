@@ -1,7 +1,7 @@
 package com.raflo.rentalService.services;
 
 import com.raflo.rentalService.model.Car;
-import com.raflo.rentalService.model.CarCategory;
+import com.raflo.rentalService.model.CarCategoryEnum;
 import com.raflo.rentalService.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car createCar(String brand, String model, CarCategory carCategory, String numberPlate) {
+    public Car createCar(String make, String model, CarCategoryEnum carCategory, String numberPlate) {
         Car car = new Car();
-        car.setBrand(brand);
+        car.setMake(make);
         car.setModel(model);
         car.setCarCategory(carCategory);
         car.setNumberPlate(numberPlate);

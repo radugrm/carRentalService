@@ -13,6 +13,9 @@
                 <a class="nav-link" href="<c:url value="/clients" />">Clients</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<c:url value="/cars" />">Cars</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li>
         </ul>

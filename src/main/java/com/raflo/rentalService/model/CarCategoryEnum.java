@@ -1,5 +1,5 @@
 package com.raflo.rentalService.model;
 
-public enum CarCategory {
+public enum CarCategoryEnum {
     ECONOMY, REGULAR, LUXURY, SUV
 }
