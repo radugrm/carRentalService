@@ -5,9 +5,11 @@ import com.raflo.rentalService.auth.repositories.RoleRepository;
 import com.raflo.rentalService.auth.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
