@@ -61,6 +61,9 @@ public class Rental {
 
     public void setExtraOptions(List<ExtraOption> extraOptions) {
         this.extraOptions = extraOptions;
+        for( ExtraOption extraOption:extraOptions) {
+            this.totalPrice += extraOption.getPrice();
+        }
     }
 
     public int getNumberOfDays() {
