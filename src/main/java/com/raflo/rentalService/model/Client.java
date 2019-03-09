@@ -1,6 +1,7 @@
 package com.raflo.rentalService.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CLIENTS")
@@ -21,6 +22,9 @@ public class Client {
 
     @Column (name = "phone_number")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "client")
+    private List<Rental> rentals;
 
 
     public long getId() {

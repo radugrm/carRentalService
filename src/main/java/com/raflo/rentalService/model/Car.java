@@ -1,6 +1,7 @@
 package com.raflo.rentalService.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table (name = "CARS")
@@ -27,6 +28,9 @@ public class Car {
 
     @Column (name = "availability")
     private boolean availability;
+
+    @OneToMany(mappedBy = "car")
+    private List<Rental> rentals;
 
 
 

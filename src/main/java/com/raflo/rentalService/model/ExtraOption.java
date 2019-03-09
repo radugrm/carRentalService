@@ -16,6 +16,10 @@ public class ExtraOption {
     @Column (name = "price")
     private int price;
 
+    @ManyToOne
+    @JoinColumn(name = "rental_id")
+    private Rental rental;
+
     public long getId() {
         return id;
     }
