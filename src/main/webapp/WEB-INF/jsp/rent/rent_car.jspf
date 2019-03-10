@@ -1,0 +1,22 @@
+<div class="col-md-5 mb-3">
+    <form:form method="get" modelAttribute="rentalForm" action="/rent">
+
+        <form:label path="carCategory" for="car-category">Car Category</form:label>
+        <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
+                     items="${carCategoryOptions}" onblur="getCar()"/>
+        <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
+    </form:form>
+</div>
+
+<div class="col-md-5 mb-3">
+    <form:form method="get" modelAttribute="rentalForm" action="/rent">
+
+        <form:label path="carsByCategory" for="car-model">Car </form:label>
+        <form:select class="custom-select d-block w-100" path="carsByCategory" id="car-model"
+                     multiple="false">
+            <c:forEach items="${rentalForm.carsByCategory}" var="car">
+                <form:option value="">${car.make} ${car.model}</form:option>
+            </c:forEach>
+        </form:select>
+    </form:form>
+</div>

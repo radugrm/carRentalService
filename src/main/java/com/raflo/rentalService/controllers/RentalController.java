@@ -37,7 +37,7 @@ public class RentalController {
     CarService carService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String rent(Model model, @RequestParam(required = false) String cnp, @RequestParam("carCategory") String category) {
+    public String rent(Model model, @RequestParam(required = false) String cnp, @RequestParam(name = "carCategory", required = false ) String category) {
         processCNPParameter(model, cnp);
         model.addAttribute("carCategoryOptions", CarCategoryEnum.values());
         model.addAttribute(RENTAL_FORM, new RentalFormDto(carsByCategory(category)));

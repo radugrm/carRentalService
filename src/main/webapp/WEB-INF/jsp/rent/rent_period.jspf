@@ -1,0 +1,42 @@
+<label for="start-date">Start Date</label>
+<div class="form-row align-items-center" id="start-date">
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <input type="text" class="form-control" id="from-day"
+                   placeholder="Day">
+        </div>
+    </div>
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <input type="text" class="form-control" id="from-month"
+                   placeholder="Month">
+        </div>
+    </div>
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <input type="text" class="form-control" id="from-year"
+                   placeholder="Year">
+        </div>
+    </div>
+</div>
+<label for="end-date">End Date</label>
+<div class="form-row align-items-center" id="end-date">
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <input type="text" class="form-control" id="to-day"
+                   placeholder="Day">
+        </div>
+    </div>
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <input type="text" class="form-control" id="to-month"
+                   placeholder="Month">
+        </div>
+    </div>
+    <div class="col-sm-3 my-1">
+        <div class="input-group">
+            <input type="text" class="form-control" id="to-year"
+                   placeholder="Year">
+        </div>
+    </div>
+</div>
