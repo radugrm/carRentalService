@@ -3,7 +3,7 @@
 
         <form:label path="carCategory" for="car-category">Car Category</form:label>
         <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
-                     items="${carCategoryOptions}" onblur="getCar()"/>
+                     items="${carCategoryOptions}" onchange="getCar()"/>
         <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
     </form:form>
 </div>

@@ -43,16 +43,7 @@ public class RentalController {
         model.addAttribute(RENTAL_FORM, new RentalFormDto(carsByCategory(category)));
         return "rent/rent_page";
     }
-
-//    @RequestMapping(method = RequestMethod.GET , value = "/getByCategory")
-//    public String getByCateg(Model model, @RequestParam("carCategory") String category) {
-//
-////        processCNPParameter(model, cnp);
-////        model.addAttribute("carCategoryOptions", CarCategoryEnum.values());
-////        model.addAttribute(RENTAL_FORM, new RentalFormDto());
-////        processCarListByCateg(model,categ);
-//        return "rent/rent_page";
-//    }
+    
 
     private List<Car> carsByCategory (String category) {
         List<Car> carsByCategory = new ArrayList<>();
