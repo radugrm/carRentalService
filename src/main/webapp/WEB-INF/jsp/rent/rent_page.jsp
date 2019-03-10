@@ -27,8 +27,6 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-
-
                         <div class="invalid-feedback">
                             Valid last name is required.
                         </div>
@@ -36,39 +34,93 @@
                 </div>
 
                 <div class="mb-3">
-
                     <label for="firstName">First Name
                         <div>${clientByCnp.firstName}</div>
                     </label>
                 </div>
                 <div class="mb-3">
-
                     <label for="lastName">Last Name
                         <div>${clientByCnp.lastName}</div>
                     </label>
                 </div>
 
-
-                <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="carCategory">Car Category</label>
-                        <select class="custom-select d-block w-100" id="country" required="">
-                            <option value="">Choose...</option>
-                            <option>United States</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
+                <form>
+                    <label for="start-date">Start Date</label>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Day">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Month">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Year">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="car">Car</label>
-                        <select class="custom-select d-block w-100" id="state" required="">
-                            <option value="">Choose...</option>
-                            <option>California</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
+                    <label for="end-date">End Date</label>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Day">
+                            </div>
                         </div>
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Month">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Year">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+
+                    <div class="col-md-5 mb-3">
+                        <form:form method="get" modelAttribute="rentalForm" action="/rent">
+                            <form:label path="carCategory" for="car-category">Car Category</form:label>
+                            <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
+                                         items="${carCategoryOptions}" onblur="getCar()"/>
+                            <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
+                        </form:form>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <form:form method="get" modelAttribute="rentalForm" action="/rent">
+                            <form:label path="carsByCategory" for="car-model">Car </form:label>
+                            <form:select class="custom-select d-block w-100" path="carsByCategory" id="car-model">
+                            <c:forEach items="${rentalForm.carsByCategory}" var="car">
+                                <form:option value="">${car.make} ${car.model}</form:option>
+                            </c:forEach>
+                            </form:select>
+                        </form:form>
+
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
                     </div>
 
                 </div>
@@ -110,6 +162,10 @@
     function getName() {
         console.log("aaa");
         document.getElementById('submit-rent-form-btn').click();
+    }
+    function getCar() {
+        console.log("bbb");
+        document.getElementById('submit-car-form-btn').click();
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

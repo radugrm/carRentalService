@@ -62,6 +62,8 @@ public class Car {
         return model;
     }
 
+    public String getCarName(){return make+" "+model;}
+
     public void setModel(String model) {
         this.model = model;
     }

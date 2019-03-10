@@ -35,4 +35,9 @@ public class CarServiceImpl implements CarService {
     public void deleteCarById(Long id) {
         carRepository.deleteById(id);
     }
+
+    @Override
+    public List<Car> getCarsByCategory(CarCategoryEnum carCategoryEnum) {
+        return carRepository.findAllByCarCategory(carCategoryEnum);
+    }
 }
