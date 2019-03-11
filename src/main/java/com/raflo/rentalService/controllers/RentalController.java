@@ -49,12 +49,12 @@ public class RentalController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String saveRent(Model model, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form,
-                           @ModelAttribute("clientByCnp") Client client){
+                           @ModelAttribute("clientByCnp") Client client) {
         rentalService.createRental(client,
-                (carService.getFirstAvailableCarByMakeAndModel(true,form.getCarMake(),form.getCarModel())),
-                form.getStartDate(),
-                form.getEndDate(),form.getInsurance(),form.getAdditionalDrivers()
-                ,getValidExtraOptionList(form));
+                (carService.getFirstAvailableCarByMakeAndModel(true, form.getCarMake(),
+                        form.getCarModel())), form.getStartDate(), form.getEndDate(),
+                form.getInsurance(), form.getAdditionalDrivers(),
+                getValidExtraOptionList(form));
         return "/";
     }
 

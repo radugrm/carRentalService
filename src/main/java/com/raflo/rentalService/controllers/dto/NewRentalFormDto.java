@@ -30,7 +30,9 @@ public class NewRentalFormDto {
     }
 
     public int getAdditionalDrivers() {
-        return additionalDrivers;
+        if (!additionalDriver) return 0;
+        else
+            return additionalDrivers;
     }
 
     public NewRentalFormDto(List<Car> carsByCategory) {
@@ -79,6 +81,13 @@ public class NewRentalFormDto {
     }
 
     public List<ExtraOptionCategoryEnum> getExtraOptions() {
+        List<ExtraOptionCategoryEnum> extraOptions = null;
+        if (toddlerSeat || navigation || infantSeat) {
+            extraOptions = new ArrayList<>();
+        }
+        if (toddlerSeat) extraOptions.add(ExtraOptionCategoryEnum.TODDLER_SEAT);
+        if (infantSeat) extraOptions.add(ExtraOptionCategoryEnum.INFANT_SEAT);
+        if (navigation) extraOptions.add(ExtraOptionCategoryEnum.NAVIGATION);
         return extraOptions;
     }
 }
