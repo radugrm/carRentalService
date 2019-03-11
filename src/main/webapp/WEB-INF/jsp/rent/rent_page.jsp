@@ -28,9 +28,9 @@
                     </label>
                 </div>
 
-                <form>
+                <div class="row">
                     <%@ include file="rent_period.jspf" %>
-                </form>
+                </div>
 
                 <div class="row">
                     <%@ include file="rent_car.jspf" %>
@@ -40,7 +40,6 @@
 
                 <hr class="mb-4">
                 <form:form cssClass="form-inline" method="post" action="/rent/new" modelAttribute="rentalForm">
-                    <form:hidden path="carId" value="${car.id}" />
                     <form:hidden path="extraOptions" value="${car.id}" />
                     <form:button type="submit" class="btn btn-primary btn-lg btn-block">Continue to checkout
                         <i class="fa fa-trash" aria-hidden="true"></i>
