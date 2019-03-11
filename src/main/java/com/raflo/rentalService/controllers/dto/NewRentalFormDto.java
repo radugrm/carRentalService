@@ -18,6 +18,10 @@ public class NewRentalFormDto {
     private String carMake;
     private String carModel;
     private boolean insurance;
+    private boolean navigation;
+    private boolean toddlerSeat;
+    private boolean infantSeat;
+    private boolean additionalDriver;
     private int additionalDrivers;
     private List<ExtraOptionCategoryEnum> extraOptions;
 
@@ -55,6 +59,23 @@ public class NewRentalFormDto {
 
     public String getCarModel() {
         return carModel;
+    }
+
+
+    public boolean getToddlerSeat() {
+        return toddlerSeat;
+    }
+
+    public boolean getInfantSeat() {
+        return infantSeat;
+    }
+
+    public boolean getAdditionalDriver() {
+        return additionalDriver;
+    }
+
+    public boolean getNavigation() {
+        return navigation;
     }
 
     public List<ExtraOptionCategoryEnum> getExtraOptions() {
