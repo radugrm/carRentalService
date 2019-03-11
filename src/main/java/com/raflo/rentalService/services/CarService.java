@@ -17,4 +17,6 @@ public interface CarService {
     void deleteCarById(Long id);
 
     Optional<Car> getCarById(long id);
+
+    Car getFirstAvailableCarByMakeAndModel(boolean availability, String make, String model);
 }

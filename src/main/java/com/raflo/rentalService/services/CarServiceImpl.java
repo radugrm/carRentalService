@@ -46,4 +46,9 @@ public class CarServiceImpl implements CarService {
     public Optional<Car> getCarById(long id) {
         return carRepository.findById(id);
     }
+
+    @Override
+    public Car getFirstAvailableCarByMakeAndModel(boolean availability, String make, String model) {
+        return carRepository.findFirstByAvailabilityAndMakeAndModel(availability,make,model);
+    }
 }

@@ -9,7 +9,6 @@
 </div>
 
 <div class="col-md-5 mb-3">
-    <form:form method="get" modelAttribute="rentalForm" action="/rent">
 
         <form:label path="carsByCategory" for="car-model">Car </form:label>
         <form:select class="custom-select d-block w-100" path="carsByCategory" id="car-model"
@@ -18,5 +17,5 @@
                 <form:option value="">${car.make} ${car.model}</form:option>
             </c:forEach>
         </form:select>
-    </form:form>
+
 </div>

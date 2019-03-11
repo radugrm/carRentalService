@@ -15,8 +15,8 @@ public class NewRentalFormDto {
     private List<Car> carsByCategory = new ArrayList<>();
     private LocalDate startDate;
     private LocalDate endDate;
-    private long carId;
-    private String clientCnp;
+    private String carMake;
+    private String carModel;
     private boolean insurance;
     private int additionalDrivers;
     private List<ExtraOptionCategoryEnum> extraOptions;
@@ -49,12 +49,12 @@ public class NewRentalFormDto {
         return endDate;
     }
 
-    public Long getCarId() {
-        return carId;
+    public String getCarMake() {
+        return carMake;
     }
 
-    public String getClientId() {
-        return clientCnp;
+    public String getCarModel() {
+        return carModel;
     }
 
     public List<ExtraOptionCategoryEnum> getExtraOptions() {

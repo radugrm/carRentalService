@@ -39,8 +39,23 @@
                 <%@include file="extra_options.jspf" %>
 
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                <form:form cssClass="form-inline" method="post" action="/rent/new" modelAttribute="rentalForm">
+                    <form:hidden path="carId" value="${car.id}" />
+                    <form:hidden path="extraOptions" value="${car.id}" />
+                    <form:button type="submit" class="btn btn-primary btn-lg btn-block">Continue to checkout
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </form:button>
+                </form:form>
             </form>
+            <div class="col-md-5 mb-3">
+                <form:form method="get" modelAttribute="rentalForm" action="/rent">
+
+                    <form:label path="carCategory" for="car-category">Car Category</form:label>
+                    <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
+                                 items="${carCategoryOptions}" onchange="getCar()"/>
+                    <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
+                </form:form>
+            </div>
         </div>
     </div>
 
