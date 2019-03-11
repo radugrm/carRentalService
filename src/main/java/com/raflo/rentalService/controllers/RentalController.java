@@ -49,7 +49,9 @@ public class RentalController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String saveRent(Model model, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form){
-        rentalService.createRental(form.getClient(), form.getCar(), form.getStartDate(),
+        rentalService.createRental(clientService.findByCnp(form.getClientId()).get(),
+                (carService.getCarById(form.getCarId())).get(),
+                form.getStartDate(),
                 form.getEndDate(),form.getInsurance(),form.getAdditionalDrivers()
                 ,getValidExtraOptionList(form));
         return "/";
