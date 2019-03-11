@@ -1,19 +1,19 @@
-<label for="extra-options">Extra Options</label>
-<div id="extra-options">
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="car-insurance">
-        <label class="custom-control-label" for="car-insurance">Car Insurance</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="additional-driver">
-        <label class="custom-control-label" for="additional-driver">Additional Driver</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="navigation">
-        <label class="custom-control-label" for="navigation">Navigation</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="toddler-seat">
-        <label class="custom-control-label" for="toddler-seat">Toddler Seat</label>
-    </div>
-</div>
+<%--<label for="extra-options">Extra Options</label>--%>
+<%--<div id="extra-options">--%>
+    <%--<div class="custom-control custom-checkbox">--%>
+        <%--<input type="checkbox" class="custom-control-input" id="car-insurance">--%>
+        <%--<label class="custom-control-label" for="car-insurance">Car Insurance</label>--%>
+    <%--</div>--%>
+    <%--<div class="custom-control custom-checkbox">--%>
+        <%--<input type="checkbox" class="custom-control-input" id="additional-driver">--%>
+        <%--<label class="custom-control-label" for="additional-driver">Additional Driver</label>--%>
+    <%--</div>--%>
+    <%--<div class="custom-control custom-checkbox">--%>
+        <%--<input type="checkbox" class="custom-control-input" id="navigation">--%>
+        <%--<label class="custom-control-label" for="navigation">Navigation</label>--%>
+    <%--</div>--%>
+    <%--<div class="custom-control custom-checkbox">--%>
+        <%--<input type="checkbox" class="custom-control-input" id="toddler-seat">--%>
+        <%--<label class="custom-control-label" for="toddler-seat">Toddler Seat</label>--%>
+    <%--</div>--%>
+<%--</div>--%>

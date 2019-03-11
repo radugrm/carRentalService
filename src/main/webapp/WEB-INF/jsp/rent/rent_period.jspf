@@ -1,10 +1,11 @@
+<form:form cssClass="form-inline" method="get" modelAttribute="rentalForm">
+    <div class="col-md-6 mb-3">
+        <label for="start-date">Start Date</label>
+        <form:input path="startDate" type="date" class="form-control" id="start-date" />
+    </div>
 
-<div class="col-md-5 mb-3">
-    <label for="start-date">Start Date</label>
-    <input type="date" class="form-control" id="start-date" >
-</div>
-
-<div class="col-md-5 mb-3">
-    <label for="end-date">End Date</label>
-    <input type="date" class="form-control" id="end-date" >
-</div>
+    <div class="col-md-6 mb-3">
+        <label for="end-date">End Date</label>
+        <form:input path="endDate" type="date" class="form-control" id="end-date" />
+    </div>
+</form:form>

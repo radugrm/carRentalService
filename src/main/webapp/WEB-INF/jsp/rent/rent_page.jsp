@@ -36,17 +36,45 @@
                     <%@ include file="rent_car.jspf" %>
                 </div>
                 <hr>
+                <form:form method="get" modelAttribute="rentalForm">
+                <label for="extra-options">Extra Options</label>
+                <div id="extra-options">
+                    <div class="custom-control custom-checkbox">
+                        <form:checkbox path="insurance" class="custom-control-input" id="car-insurance"/>
+                        <form:label path="insurance" class="custom-control-label" for="car-insurance">Car Insurance</form:label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="navigation">
+                        <label class="custom-control-label" for="navigation">Navigation</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="toddler-seat">
+                        <label class="custom-control-label" for="toddler-seat">Toddler Seat</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="additional-driver" onchange="toggleDisable(this)">
+                        <label class="custom-control-label" for="additional-driver">Additional Driver</label>
+                    </div>
+                    <fieldset id="number-of-drivers" disabled>
+                        <div class="col-md-2 mb-1">
+                            <input type="text" id="disabledTextInput" class="form-control"
+                                   placeholder="0">
+                        </div>
+                    </fieldset>
+                </div>
+                </form:form>
                 <%@include file="extra_options.jspf" %>
 
                 <hr class="mb-4">
                 <form:form cssClass="form-inline" method="post" action="/rent/new" modelAttribute="rentalForm">
-                    <form:hidden path="extraOptions" value="${car.id}" />
+                    <form:hidden path="extraOptions" value="${car.id}"/>
                     <form:button type="submit" class="btn btn-primary btn-lg btn-block">Continue to checkout
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </form:button>
                 </form:form>
             </form>
-            <div class="col-md-5 mb-3">
+            <div class="row">
                 <form:form method="get" modelAttribute="rentalForm" action="/rent">
 
                     <form:label path="carCategory" for="car-category">Car Category</form:label>
@@ -68,6 +96,19 @@
     function getCar() {
         console.log("bbb");
         document.getElementById('submit-car-form-btn').click();
+    }
+    function toggleDisable(checkbox) {
+        var toggle = document.getElementById("number-of-drivers");
+        if(checkbox.checked){
+            toggle.disabled=false;
+        }
+        else{
+            toggle.disabled=true;
+        }
+
+    }
+    window.onload = function() {
+        toggleDisable(document.getElementById('additional-driver'));
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
