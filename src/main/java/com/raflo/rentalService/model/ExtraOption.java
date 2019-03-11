@@ -45,6 +45,8 @@ public class ExtraOption {
             case INFANT_SEAT:
                 this.price=15;
                 break;
+            case NAVIGATION:
+                this.price=10;
         }
     }
 
