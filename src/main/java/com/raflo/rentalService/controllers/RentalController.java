@@ -1,6 +1,6 @@
 package com.raflo.rentalService.controllers;
 
-import com.raflo.rentalService.controllers.dto.RentalFormDto;
+import com.raflo.rentalService.controllers.dto.NewRentalFormDto;
 import com.raflo.rentalService.model.*;
 import com.raflo.rentalService.services.CarService;
 import com.raflo.rentalService.services.ClientService;
@@ -9,6 +9,7 @@ import com.raflo.rentalService.services.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-import static com.raflo.rentalService.controllers.dto.RentalFormDto.RENTAL_FORM;
+import static com.raflo.rentalService.controllers.dto.NewRentalFormDto.NEW_RENTAL_FORM;
+
 
 @Controller
 @RequestMapping("/rent")
@@ -41,15 +43,21 @@ public class RentalController {
     public String rent(Model model, @RequestParam(required = false) String cnp, @RequestParam(name = "carCategory", required = false) String category) {
         processCNPParameter(model, cnp);
         model.addAttribute("carCategoryOptions", CarCategoryEnum.values());
-        model.addAttribute(RENTAL_FORM, new RentalFormDto(carsByCategory(category)));
+        model.addAttribute(NEW_RENTAL_FORM, new NewRentalFormDto(carsByCategory(category)));
         return "rent/rent_page";
     }
 
-    private List<ExtraOption> getValidExtraOptionList(Client client, Car car, LocalDate startDate,
-                                                      LocalDate endDate, boolean insurance,
-                                                      int additionalDrivers, ExtraOptionCategoryEnum... extraOptions) {
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public String saveRent(Model model, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form){
+        rentalService.createRental(form.getClient(), form.getCar(), form.getStartDate(),
+                form.getEndDate(),form.getInsurance(),form.getAdditionalDrivers()
+                ,getValidExtraOptionList(form));
+        return "/";
+    }
+
+    private List<ExtraOption> getValidExtraOptionList(@ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
         List<ExtraOption> extraOptionList = new ArrayList<>();
-        for (ExtraOptionCategoryEnum e : extraOptions) {
+        for (ExtraOptionCategoryEnum e : form.getExtraOptions()) {
             extraOptionList.add(extraOptionService.findFirstAvailableExtraOptionByCategory(e, true));
         }
         return extraOptionList;

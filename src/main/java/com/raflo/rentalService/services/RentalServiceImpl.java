@@ -22,7 +22,7 @@ public class RentalServiceImpl implements RentalService {
 
     @Override
     public Rental createRental(Client client, Car car, LocalDate startDate, LocalDate endDate, boolean insurance,
-                               int additionalDrivers, ExtraOption... extraOptions) {
+                               int additionalDrivers, List<ExtraOption> extraOptions) {
         Rental rental = new Rental();
         int price = 0;
         rental.setClient(client);
@@ -31,7 +31,7 @@ public class RentalServiceImpl implements RentalService {
         rental.setEndDate(endDate);
         rental.setInsurance(insurance);
         rental.setAdditionalDriver(additionalDrivers);
-        rental.setExtraOptions(Arrays.asList(extraOptions));
+        rental.setExtraOptions(extraOptions);
 
         price += car.getPrice();
         if(insurance){
