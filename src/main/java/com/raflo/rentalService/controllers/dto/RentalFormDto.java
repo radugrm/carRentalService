@@ -6,8 +6,10 @@ import com.raflo.rentalService.model.Client;
 import com.raflo.rentalService.model.ExtraOption;
 
 
+
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 public class RentalFormDto {
@@ -15,7 +17,8 @@ public class RentalFormDto {
 
     private CarCategoryEnum carCategory;
     private List<Car> carsByCategory = new ArrayList<>();
-    private Date date;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private Car car;
     private Client client;
     private List<ExtraOption> extraOptions;

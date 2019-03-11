@@ -11,20 +11,14 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 public class RentalServiceImpl implements RentalService {
     @Autowired
     RentalRepository rentalRepository;
-
-    private List<ExtraOption> addExtraOptions(ExtraOption... extraOptions) {
-        List<ExtraOption> extraOptionList = new ArrayList<>();
-        for (ExtraOption extraOption : extraOptions) {
-            extraOptionList.add(extraOption);
-        }
-        return extraOptionList;
-    }
 
     @Override
     public Rental createRental(Client client, Car car, LocalDate startDate, LocalDate endDate, boolean insurance,
@@ -37,7 +31,7 @@ public class RentalServiceImpl implements RentalService {
         rental.setEndDate(endDate);
         rental.setInsurance(insurance);
         rental.setAdditionalDriver(additionalDrivers);
-        rental.setExtraOptions(addExtraOptions(extraOptions));
+        rental.setExtraOptions(Arrays.asList(extraOptions));
 
         price += car.getPrice();
         if(insurance){

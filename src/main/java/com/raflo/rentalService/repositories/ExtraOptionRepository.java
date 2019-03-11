@@ -11,4 +11,5 @@ import java.util.List;
 public interface ExtraOptionRepository extends JpaRepository<ExtraOption, Long> {
 
     List<ExtraOption> findAllByExtraOptionCategoryEnum(ExtraOptionCategoryEnum extraOptionCategoryEnum);
+    ExtraOption findFirstByExtraOptionCategoryEnumAndAvailability(ExtraOptionCategoryEnum extraOptionCategoryEnum, boolean availability);
 }

@@ -31,4 +31,9 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
     public void deleteExtraOptionById(Long id) {
         extraOptionRepository.deleteById(id);
     }
+
+    @Override
+    public ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum, boolean availability) {
+        return extraOptionRepository.findFirstByExtraOptionCategoryEnumAndAvailability(extraOptionCategoryEnum,availability);
+    }
 }
