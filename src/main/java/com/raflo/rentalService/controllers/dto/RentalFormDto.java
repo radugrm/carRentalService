@@ -2,9 +2,12 @@ package com.raflo.rentalService.controllers.dto;
 
 import com.raflo.rentalService.model.Car;
 import com.raflo.rentalService.model.CarCategoryEnum;
+import com.raflo.rentalService.model.Client;
+import com.raflo.rentalService.model.ExtraOption;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class RentalFormDto {
@@ -12,6 +15,11 @@ public class RentalFormDto {
 
     private CarCategoryEnum carCategory;
     private List<Car> carsByCategory = new ArrayList<>();
+    private Date date;
+    private Car car;
+    private Client client;
+    private List<ExtraOption> extraOptions;
+
 
     public RentalFormDto(List<Car> carsByCategory) {
         this.carsByCategory = carsByCategory;

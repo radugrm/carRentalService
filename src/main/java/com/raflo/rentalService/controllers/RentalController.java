@@ -1,7 +1,6 @@
 package com.raflo.rentalService.controllers;
 
-import com.raflo.rentalService.controllers.dto.CarsBySomething;
-import com.raflo.rentalService.controllers.dto.NewCarFormDto;
+
 import com.raflo.rentalService.controllers.dto.RentalFormDto;
 import com.raflo.rentalService.model.Car;
 import com.raflo.rentalService.model.CarCategoryEnum;
@@ -43,7 +42,7 @@ public class RentalController {
         model.addAttribute(RENTAL_FORM, new RentalFormDto(carsByCategory(category)));
         return "rent/rent_page";
     }
-    
+
 
     private List<Car> carsByCategory (String category) {
         List<Car> carsByCategory = new ArrayList<>();

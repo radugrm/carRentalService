@@ -1,6 +1,7 @@
 package com.raflo.rentalService.model;
 
 import javax.persistence.*;
+import java.util.Comparator;
 
 @Entity
 @Table(name = "EXTRAOPTIONS")
@@ -15,6 +16,9 @@ public class ExtraOption {
 
     @Column (name = "price")
     private int price;
+
+    @Column (name = "availability")
+    private boolean availability;
 
     @ManyToOne
     @JoinColumn(name = "rental_id")
@@ -38,22 +42,38 @@ public class ExtraOption {
             case TODDLER_SEAT:
                 this.price=15;
                 break;
-            case NAVIGATION:
-                this.price=10;
-                break;
-            case INSURANCE:
-                this.price=20;
-                break;
-            case ADDITIONAL_DRIVER:
+            case INFANT_SEAT:
                 this.price=15;
                 break;
         }
     }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return availability;
+    }
+
+    public void setAvailable(boolean available) {
+        this.availability = available;
+    }
+
+    public Rental getRental() {
+        return rental;
+    }
+
+    public void setRental(Rental rental) {
+        this.rental = rental;
+    }
 
     public int getPrice() {
         return price;
     }
 
-
+    public String getAvailabilityToString(){
+        if(this.availability) return "available";
+        else return "unavailable";
+    }
 }

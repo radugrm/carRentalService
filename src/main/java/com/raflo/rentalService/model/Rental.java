@@ -1,6 +1,7 @@
 package com.raflo.rentalService.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -12,6 +13,18 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
+    @Column(name = "insurance")
+    private boolean insurance;
+
+    @Column(name = "additional_driver")
+    private int additionalDriver;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -20,16 +33,45 @@ public class Rental {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @Column(name = "number_of_days")
-    private int numberOfDays;
-
-    @Column(name="total_price")
+    @Column(name = "total_price")
     private int totalPrice;
 
     @OneToMany(mappedBy = "rental",
-    cascade = CascadeType.ALL,
-    orphanRemoval = true)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<ExtraOption> extraOptions;
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public boolean isInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(boolean insurance) {
+        this.insurance = insurance;
+    }
+
+    public int getAdditionalDriver() {
+        return additionalDriver;
+    }
+
+    public void setAdditionalDriver(int additionalDriver) {
+        this.additionalDriver = additionalDriver;
+    }
 
     public long getId() {
         return id;
@@ -61,18 +103,11 @@ public class Rental {
 
     public void setExtraOptions(List<ExtraOption> extraOptions) {
         this.extraOptions = extraOptions;
-        for( ExtraOption extraOption:extraOptions) {
+        for (ExtraOption extraOption : extraOptions) {
             this.totalPrice += extraOption.getPrice();
         }
     }
 
-    public int getNumberOfDays() {
-        return numberOfDays;
-    }
-
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
-    }
 
     public int getTotalPrice() {
         return totalPrice;
