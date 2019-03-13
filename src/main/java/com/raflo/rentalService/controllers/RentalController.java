@@ -43,13 +43,13 @@ public class RentalController {
     @RequestMapping(method = RequestMethod.GET)
     public String rent(Model model, @RequestParam(name = "client", required = false) String cnp,
                        @RequestParam(name = "carCategory", required = false) String category) {
-        NewRentalFormDto form = new NewRentalFormDto(new Client(),carsByCategory(category));
-        model.addAttribute("carCategoryOptions", CarCategoryEnum.values());
+        NewRentalFormDto form = new NewRentalFormDto();
+        processCNPParameter(form, cnp);
+        processCarsByCategory(form, category);
         model.addAttribute(NEW_RENTAL_FORM, form);
-        processCNPParameter(model,form, cnp);
+
         return "rent/rent_page";
     }
-
 
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -72,17 +72,22 @@ public class RentalController {
         return extraOptionList;
     }
 
-    private List<Car> carsByCategory(String category) {
-        List<Car> carsByCategory = new ArrayList<>();
-        if (category == null || category.isEmpty()) {
-            carsByCategory.add(new Car());
-        } else {
+    private void processCarsByCategory(NewRentalFormDto form, String category) {
+        Optional<List<Car>> carsByCategory;
+        Optional<String> categoryOpt = Optional.ofNullable(category);
+        if (categoryOpt.isPresent()) {
             carsByCategory = carService.getCarsByCategory(CarCategoryEnum.valueOf(category));
+            if (!carsByCategory.isPresent()) {
+                form.setCarsByCategory(new ArrayList<>());
+            }else {
+                form.setCarsByCategory(carsByCategory.get());
+            }
+        } else {
+            form.setCarsByCategory(new ArrayList<>());
         }
-        return carsByCategory;
     }
 
-    private void processCNPParameter(Model model,NewRentalFormDto form, String cnp) {
+    private void processCNPParameter(NewRentalFormDto form, String cnp) {
         Optional<Client> client;
         Optional<String> cnpOpt = Optional.ofNullable(cnp);
         if (cnpOpt.isPresent()) {

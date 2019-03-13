@@ -1,22 +1,33 @@
 <div class="col-md-5 mb-3">
 
 
-        <form:label path="carCategory" for="car-category">Car Category</form:label>
-        <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
-                     items="${carCategoryOptions}" onchange="getCar()"/>
-        <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
+    <form:label path="carCategory" for="car-category">Car Category</form:label>
+    <form:select class="custom-select d-block w-100" path="carCategory" id="car-category" selected="true"
+                 onchange="getCar()">
+        <c:forEach items="${rentalForm.carCategoryOptions}" var="category">
+            <c:choose>
+                <c:when test="${param.carCategory==category}">
+                    <form:option selected = "true" value="${category}">${category}</form:option>
+                </c:when>
+                <c:otherwise>
+                    <form:option value="${category}">${category}</form:option>
+                </c:otherwise></c:choose>
+        </c:forEach>
+    </form:select>
+    <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
 
 </div>
 
 <div class="col-md-5 mb-3">
 
 
-        <form:label path="carsByCategory" for="car-model">Car </form:label>
-        <form:select class="custom-select d-block w-100" path="carsByCategory" id="car-model"
-                     multiple="false">
-            <c:forEach items="${rentalForm.carsByCategory}" var="car">
-                <form:option value="">${car.make} ${car.model}</form:option>
-            </c:forEach>
-        </form:select>
+    <form:label path="carsByCategory" for="car-model">Car </form:label>
+    <form:select class="custom-select d-block w-100" path="carsByCategory" id="car-model"
+                 multiple="false">
+        <%--<form:option value="-">- Select -</form:option>--%>
+        <c:forEach items="${rentalForm.carsByCategory}" var="car">
+            <form:option value="">${car.make} ${car.model}</form:option>
+        </c:forEach>
+    </form:select>
 
 </div>

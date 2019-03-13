@@ -10,7 +10,7 @@ public interface CarService {
 
     List<Car> getAllCars();
 
-    List<Car> getCarsByCategory(CarCategoryEnum carCategoryEnum);
+    Optional<List<Car>> getCarsByCategory(CarCategoryEnum carCategoryEnum);
 
     Car createCar(String brand, String model, CarCategoryEnum carCategory, String numberPlate);
 

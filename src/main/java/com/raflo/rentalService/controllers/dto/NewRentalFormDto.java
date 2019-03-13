@@ -13,7 +13,8 @@ public class NewRentalFormDto {
 
     private Client client;
     private CarCategoryEnum carCategory;
-    private List<Car> carsByCategory = new ArrayList<>();
+    private List<CarCategoryEnum> carCategoryOptions;
+    private List<Car> carsByCategory;
     private LocalDate startDate;
     private LocalDate endDate;
     private String carMake;
@@ -26,8 +27,21 @@ public class NewRentalFormDto {
     private int additionalDrivers;
     private List<ExtraOptionCategoryEnum> extraOptions;
 
+
+    public NewRentalFormDto() {
+        carCategoryOptions=new ArrayList<>();
+        for(CarCategoryEnum e:CarCategoryEnum.values()){
+            carCategoryOptions.add(e);
+        }
+    }
+
     public Client getClient() {
         return client;
+    }
+
+
+    public List<CarCategoryEnum> getCarCategoryOptions() {
+        return carCategoryOptions;
     }
 
     public void setClient(Client client) {
@@ -44,8 +58,12 @@ public class NewRentalFormDto {
             return additionalDrivers;
     }
 
-    public NewRentalFormDto(Client client, List<Car> carsByCategory) {
-        this.client=client;
+
+    public void setCarCategory(CarCategoryEnum carCategory) {
+        this.carCategory = carCategory;
+    }
+
+    public void setCarsByCategory(List<Car> carsByCategory) {
         this.carsByCategory = carsByCategory;
     }
 
