@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 
@@ -42,9 +46,13 @@ public class RentalController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String rent(Model model, @RequestParam(name = "client", required = false) String cnp,
+                       @RequestParam(name = "startDate", required = false) String startDate,
+                       @RequestParam(name = "endDate", required = false) String endDate,
                        @RequestParam(name = "carCategory", required = false) String category) {
         NewRentalFormDto form = new NewRentalFormDto();
         processCNPParameter(form, cnp);
+        processStartDate(form, startDate);
+        processEndDate(form, endDate);
         processCarsByCategory(form, category);
         model.addAttribute(NEW_RENTAL_FORM, form);
 
@@ -72,6 +80,32 @@ public class RentalController {
         return extraOptionList;
     }
 
+    private void processStartDate(NewRentalFormDto form, String date) {
+        Optional<String> dateOpt = Optional.ofNullable(date);
+        if (dateOpt.isPresent()) {
+            LocalDate date1 = getLocalDate(date);
+            form.setStartDate(date1);
+        }
+    }
+
+
+    private void processEndDate(NewRentalFormDto form, String date) {
+        Optional<String> dateOpt = Optional.ofNullable(date);
+        if (dateOpt.isPresent()) {
+            LocalDate date1 = getLocalDate(date);
+            form.setEndDate(date1);
+        }
+
+    }
+
+    private LocalDate getLocalDate(String date) {
+        String year = date.substring(0, 4);
+        String month = date.substring(5, 7);
+        String day = date.substring(8);
+        return LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+    }
+
+
     private void processCarsByCategory(NewRentalFormDto form, String category) {
         Optional<List<Car>> carsByCategory;
         Optional<String> categoryOpt = Optional.ofNullable(category);
@@ -79,7 +113,7 @@ public class RentalController {
             carsByCategory = carService.getCarsByCategory(CarCategoryEnum.valueOf(category));
             if (!carsByCategory.isPresent()) {
                 form.setCarsByCategory(new ArrayList<>());
-            }else {
+            } else {
                 form.setCarsByCategory(carsByCategory.get());
             }
         } else {

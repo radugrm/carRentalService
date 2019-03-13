@@ -27,6 +27,13 @@ public class NewRentalFormDto {
     private int additionalDrivers;
     private List<ExtraOptionCategoryEnum> extraOptions;
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 
     public NewRentalFormDto() {
         carCategoryOptions=new ArrayList<>();

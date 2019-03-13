@@ -1,10 +1,14 @@
 
     <div class="col-md-6 mb-3">
         <label for="start-date">Start Date</label>
-        <form:input path="startDate" type="date" class="form-control" id="start-date" />
+        <form:input path="startDate" type="date" class="form-control" id="start-date"
+                    value="${startDate.day}/${startDate.month}/${startDate.year}" required="" onblur="getStartDate()"/>
+        <form:button type="submit" id="submit-start-date-form-btn" class="d-none"/>
     </div>
 
     <div class="col-md-6 mb-3">
         <label for="end-date">End Date</label>
-        <form:input path="endDate" type="date" class="form-control" id="end-date" />
+        <form:input path="endDate" type="date" class="form-control" id="end-date"
+                    value="${endDate.day}/${endDate.month}/${endDate.year}" required="" onblur="getEndDate()"/>
+        <form:button type="submit" id="submit-end-date-form-btn" class="d-none"/>
     </div>
