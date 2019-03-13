@@ -11,36 +11,45 @@
     <div class="row">
 
         <div class="col-md-8 order-md-1">
-
             <form class="needs-validation" novalidate="">
-                <div class="row">
-                    <%@ include file="rent_client.jspf" %>
-                </div>
+                <form:form cssClass="form-inline" method="get" modelAttribute="rentalForm" action="/rent">
+                    <div class="row">
+                        <%@ include file="rent_client.jspf" %>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="firstName">First Name
-                        <div id="firstName">${clientByCnp.firstName}</div>
-                    </label>
-                </div>
-                <div class="mb-3">
-                    <label for="lastName">Last Name
-                        <div id="lastName">${clientByCnp.lastName}</div>
-                    </label>
-                </div>
+                    <div class="mb-3">
+                        <label for="firstName">First Name
+                            <div id="firstName">${clientByCnp.firstName}</div>
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName">Last Name
+                            <div id="lastName">${clientByCnp.lastName}</div>
+                        </label>
+                    </div>
 
-                <div class="row">
-                    <%@ include file="rent_period.jspf" %>
-                </div>
+                    <div class="row">
+                        <%@ include file="rent_period.jspf" %>
+                    </div>
 
-                <div class="row">
-                    <%@ include file="rent_car.jspf" %>
-                </div>
-                <hr>
+                    <div class="row">
+                        <%@ include file="rent_car.jspf" %>
+                    </div>
+                    <hr>
 
-                <%@include file="extra_options.jspf" %>
-
+                    <%@include file="extra_options.jspf" %>
+                </form:form>
                 <hr class="mb-4">
                 <form:form cssClass="form-inline" method="post" action="/rent/new" modelAttribute="rentalForm">
+                    <form:hidden path="startDate"/>
+                    <form:hidden path="endDate"/>
+                    <form:hidden path="carMake"/>
+                    <form:hidden path="carModel"/>
+                    <form:hidden path="insurance"/>
+                    <form:hidden path="infantSeat"/>
+                    <form:hidden path="toddlerSeat"/>
+                    <form:hidden path="navigation"/>
+                    <form:hidden path="additionalDrivers"/>
                     <form:hidden path="extraOptions" value="${car.id}"/>
                     <form:button type="submit" class="btn btn-primary btn-lg btn-block">Continue to checkout
                         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -61,17 +70,18 @@
         console.log("bbb");
         document.getElementById('submit-car-form-btn').click();
     }
+
     function toggleDisable(checkbox) {
         var toggle = document.getElementById("number-of-drivers");
-        if(checkbox.checked){
-            toggle.disabled=false;
-        }
-        else{
-            toggle.disabled=true;
+        if (checkbox.checked) {
+            toggle.disabled = false;
+        } else {
+            toggle.disabled = true;
         }
 
     }
-    window.onload = function() {
+
+    window.onload = function () {
         toggleDisable(document.getElementById('additional-driver'));
     }
 </script>

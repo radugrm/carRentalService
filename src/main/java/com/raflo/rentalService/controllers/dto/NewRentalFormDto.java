@@ -11,6 +11,7 @@ import java.util.List;
 public class NewRentalFormDto {
     public static final String NEW_RENTAL_FORM = "rentalForm";
 
+    private Client client;
     private CarCategoryEnum carCategory;
     private List<Car> carsByCategory = new ArrayList<>();
     private LocalDate startDate;
@@ -25,6 +26,14 @@ public class NewRentalFormDto {
     private int additionalDrivers;
     private List<ExtraOptionCategoryEnum> extraOptions;
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public boolean getInsurance() {
         return insurance;
     }
@@ -35,7 +44,8 @@ public class NewRentalFormDto {
             return additionalDrivers;
     }
 
-    public NewRentalFormDto(List<Car> carsByCategory) {
+    public NewRentalFormDto(Client client, List<Car> carsByCategory) {
+        this.client=client;
         this.carsByCategory = carsByCategory;
     }
 

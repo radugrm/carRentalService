@@ -1,11 +1,10 @@
 <div class="col-md-6 mb-3">
-    <label for="cnp">CNP</label>
-    <form:form id="cnp-form" cssClass="form-inline" method="get" modelAttribute="clientByCnp"
-               action="/rent">
-        <form:input path="cnp" type="text" class="form-control" placeholder=""
-                    value="${clientByCnp.cnp}" required="" id="CNP" onblur="getName()"/>
+    <label for="client">CNP</label>
+
+        <form:input path="client" type="text" class="form-control" placeholder=""
+                    value="${rentalForm.client.cnp}" required="" id="CNP" onblur="getName()"/>
         <form:button type="submit" id="submit-rent-form-btn" class="d-none"/>
-    </form:form>
+
     <div class="invalid-feedback">
         Valid first name is required.
     </div>

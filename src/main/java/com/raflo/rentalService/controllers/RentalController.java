@@ -1,5 +1,6 @@
 package com.raflo.rentalService.controllers;
 
+
 import com.raflo.rentalService.controllers.dto.NewRentalFormDto;
 import com.raflo.rentalService.model.*;
 import com.raflo.rentalService.services.CarService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,12 +41,16 @@ public class RentalController {
     CarService carService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String rent(Model model, @RequestParam(required = false) String cnp, @RequestParam(name = "carCategory", required = false) String category) {
-        processCNPParameter(model, cnp);
+    public String rent(Model model, @RequestParam(name = "client", required = false) String cnp,
+                       @RequestParam(name = "carCategory", required = false) String category) {
+        NewRentalFormDto form = new NewRentalFormDto(new Client(),carsByCategory(category));
         model.addAttribute("carCategoryOptions", CarCategoryEnum.values());
-        model.addAttribute(NEW_RENTAL_FORM, new NewRentalFormDto(carsByCategory(category)));
+        model.addAttribute(NEW_RENTAL_FORM, form);
+        processCNPParameter(model,form, cnp);
         return "rent/rent_page";
     }
+
+
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String saveRent(Model model, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form,
@@ -57,6 +62,7 @@ public class RentalController {
                 getValidExtraOptionList(form));
         return "/";
     }
+
 
     private List<ExtraOption> getValidExtraOptionList(@ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
         List<ExtraOption> extraOptionList = new ArrayList<>();
@@ -76,20 +82,20 @@ public class RentalController {
         return carsByCategory;
     }
 
-    private void processCNPParameter(Model model, String cnp) {
-        Optional client;
+    private void processCNPParameter(Model model,NewRentalFormDto form, String cnp) {
+        Optional<Client> client;
         Optional<String> cnpOpt = Optional.ofNullable(cnp);
         if (cnpOpt.isPresent()) {
             client = clientService.findByCnp(cnp);
 
             if (!client.isPresent()) {
-                model.addAttribute("clientByCnp", clientWithCNP(cnp));
+                form.setClient(clientWithCNP(cnp));
             } else {
 
-                model.addAttribute("clientByCnp", client.get());
+                form.setClient(client.get());
             }
         } else {
-            model.addAttribute("clientByCnp", new Client());
+            form.setClient(new Client());
         }
     }
 
