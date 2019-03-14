@@ -33,6 +33,10 @@ public class Rental {
     @JoinColumn(name = "car_id")
     private Car car;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "extraoption_id")
+    private ExtraOption extraOption;
+
     @Column(name = "total_price")
     private int totalPrice;
 

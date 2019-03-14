@@ -14,6 +14,14 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
     @Autowired
     private ExtraOptionRepository extraOptionRepository;
 
+
+    @Override
+    public void changeCarAvailability(long id, boolean availability) {
+        if(extraOptionRepository.findById(id).isPresent()) {
+            extraOptionRepository.findById(id).get().setAvailability(availability);
+        }
+    }
+
     @Override
     public List<ExtraOption> getAllExtraOption() {
         return null;
@@ -27,10 +35,6 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
         return extraOptionRepository.save(extraOption);
     }
 
-    @Override
-    public void deleteExtraOptionById(Long id) {
-        extraOptionRepository.deleteById(id);
-    }
 
     @Override
     public ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum, boolean availability) {

@@ -33,6 +33,15 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public void changeCarAvailability(long id, boolean availability) {
+        if(carRepository.findById(id).isPresent()) {
+            carRepository.findById(id).get().setAvailability(availability);
+        }
+    }
+
+
+
+    @Override
     public void deleteCarById(Long id) {
         carRepository.deleteById(id);
     }

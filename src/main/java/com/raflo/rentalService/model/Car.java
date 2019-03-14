@@ -34,7 +34,7 @@ public class Car {
 
 
 
-    public boolean isAvailability() {
+    public boolean getAvailability() {
         return availability;
     }
 

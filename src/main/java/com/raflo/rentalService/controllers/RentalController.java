@@ -68,6 +68,7 @@ public class RentalController {
                         form.getCarModel())), form.getStartDate(), form.getEndDate(),
                 form.getInsurance(), form.getAdditionalDrivers(),
                 getValidExtraOptionList(form));
+
         return "/";
     }
 

@@ -2,6 +2,7 @@ package com.raflo.rentalService.model;
 
 import javax.persistence.*;
 import java.util.Comparator;
+import java.util.List;
 
 @Entity
 @Table(name = "EXTRAOPTIONS")
@@ -20,9 +21,24 @@ public class ExtraOption {
     @Column (name = "availability")
     private boolean availability;
 
-    @ManyToOne
-    @JoinColumn(name = "rental_id")
-    private Rental rental;
+    @OneToMany(mappedBy = "extraOption")
+    private List<Rental> rentals;
+
+    public boolean isAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
 
     public long getId() {
         return id;
@@ -62,13 +78,6 @@ public class ExtraOption {
         this.availability = available;
     }
 
-    public Rental getRental() {
-        return rental;
-    }
-
-    public void setRental(Rental rental) {
-        this.rental = rental;
-    }
 
     public int getPrice() {
         return price;

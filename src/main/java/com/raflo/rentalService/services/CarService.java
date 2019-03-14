@@ -19,4 +19,8 @@ public interface CarService {
     Optional<Car> getCarById(long id);
 
     Car getFirstAvailableCarByMakeAndModel(boolean availability, String make, String model);
+
+    void changeCarAvailability (long id, boolean availability);
+
+
 }
