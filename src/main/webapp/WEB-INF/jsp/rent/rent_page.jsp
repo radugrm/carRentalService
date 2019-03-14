@@ -13,20 +13,9 @@
         <div class="col-md-8 order-md-1">
             <form class="needs-validation" novalidate="">
                 <form:form cssClass="form-inline" method="get" modelAttribute="rentalForm" action="/rent">
-                    <div class="row">
-                        <%@ include file="rent_client.jspf" %>
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="firstName">First Name
-                            <div id="firstName">${clientByCnp.firstName}</div>
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lastName">Last Name
-                            <div id="lastName">${clientByCnp.lastName}</div>
-                        </label>
-                    </div>
+                    <%@ include file="rent_client.jspf" %>
+
 
                     <div class="row">
                         <%@ include file="rent_period.jspf" %>
@@ -63,7 +52,7 @@
 <script type="application/javascript">
     function getName() {
         console.log("aaa");
-        document.getElementById('submit-rent-form-btn').click();
+        document.getElementById('submit-client-form-btn').click();
     }
 
 
