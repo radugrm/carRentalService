@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 
 import static com.raflo.rentalService.controllers.dto.NewRentalFormDto.NEW_RENTAL_FORM;
@@ -67,14 +64,14 @@ public class RentalController {
                 (carService.getFirstAvailableCarByMakeAndModel(true, form.getCarMake(),
                         form.getCarModel())), form.getStartDate(), form.getEndDate(),
                 form.getInsurance(), form.getAdditionalDrivers(),
-                getValidExtraOptionList(form));
+                getValidExtraOptionSet(form));
 
         return "/";
     }
 
 
-    private List<ExtraOption> getValidExtraOptionList(@ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
-        List<ExtraOption> extraOptionList = new ArrayList<>();
+    private Set<ExtraOption> getValidExtraOptionSet(@ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
+        Set<ExtraOption> extraOptionList = new HashSet<>();
         for (ExtraOptionCategoryEnum e : form.getExtraOptions()) {
             extraOptionList.add(extraOptionService.findFirstAvailableExtraOptionByCategory(e, true));
         }

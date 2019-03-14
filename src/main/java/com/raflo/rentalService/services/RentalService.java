@@ -7,10 +7,11 @@ import com.raflo.rentalService.model.Rental;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public interface RentalService {
     Rental createRental(Client client, Car car, LocalDate startDate, LocalDate endDate, boolean insurance,
-                        int additionalDrivers, List<ExtraOption> extraOptions);
+                        int additionalDrivers, Set<ExtraOption> extraOptions);
 
     int getTotalPrice(Rental rental);
 }

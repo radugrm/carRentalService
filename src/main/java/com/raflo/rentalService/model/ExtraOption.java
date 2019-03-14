@@ -2,7 +2,9 @@ package com.raflo.rentalService.model;
 
 import javax.persistence.*;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "EXTRAOPTIONS")
@@ -21,10 +23,10 @@ public class ExtraOption {
     @Column (name = "availability")
     private boolean availability;
 
-    @OneToMany(mappedBy = "extraOption")
-    private List<Rental> rentals;
+    @ManyToMany(mappedBy = "extraOptions")
+    private Set<Rental> tags = new HashSet<>();
 
-    public boolean isAvailability() {
+    public boolean getAvailability() {
         return availability;
     }
 
@@ -32,12 +34,12 @@ public class ExtraOption {
         this.availability = availability;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
+    public Set<Rental> getTags() {
+        return tags;
     }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
+    public void setTags(Set<Rental> tags) {
+        this.tags = tags;
     }
 
     public long getId() {

@@ -2,7 +2,9 @@ package com.raflo.rentalService.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "RENTAL")
@@ -33,17 +35,19 @@ public class Rental {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "extraoption_id")
-    private ExtraOption extraOption;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "extraoptions_rental",
+            joinColumns = @JoinColumn(name = "extraoption_id"),
+            inverseJoinColumns = @JoinColumn(name = "rental_id")
+    )
+    private Set<ExtraOption> extraOptions = new HashSet<>();
 
     @Column(name = "total_price")
     private int totalPrice;
 
-    @OneToMany(mappedBy = "rental",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<ExtraOption> extraOptions;
 
     public LocalDate getStartDate() {
         return startDate;
@@ -101,11 +105,12 @@ public class Rental {
         this.car = car;
     }
 
-    public List<ExtraOption> getExtraOptions() {
+
+    public Set<ExtraOption> getExtraOptions() {
         return extraOptions;
     }
 
-    public void setExtraOptions(List<ExtraOption> extraOptions) {
+    public void setExtraOptions(Set<ExtraOption> extraOptions) {
         this.extraOptions = extraOptions;
     }
 
@@ -116,4 +121,8 @@ public class Rental {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+
+
+
 }

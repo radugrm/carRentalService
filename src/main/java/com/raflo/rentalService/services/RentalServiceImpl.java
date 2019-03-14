@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RentalServiceImpl implements RentalService {
@@ -22,7 +19,7 @@ public class RentalServiceImpl implements RentalService {
 
     @Override
     public Rental createRental(Client client, Car car, LocalDate startDate, LocalDate endDate, boolean insurance,
-                               int additionalDrivers, List<ExtraOption> extraOptions) {
+                               int additionalDrivers, Set<ExtraOption> extraOptions) {
         Rental rental = new Rental();
         int price = 0;
         rental.setClient(client);
