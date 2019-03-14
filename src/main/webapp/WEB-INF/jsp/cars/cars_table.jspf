@@ -23,7 +23,14 @@
             <td>${car.carCategory}</td>
             <td>${car.price}</td>
             <td>${car.availabilityToString}</td>
-
+            <td>
+                <form:form cssClass="form-inline" method="post" action="/cars/delete" modelAttribute="deleteCarForm">
+                    <form:hidden path="carId" value="${car.id}" />
+                    <form:button type="submit" class="btn btn-danger delete-client-btn">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </form:button>
+                </form:form>
+            </td>
 
         </tr>
     </c:forEach>

@@ -27,7 +27,7 @@ public class CarServiceImpl implements CarService {
         car.setModel(model);
         car.setCarCategory(carCategory);
         car.setNumberPlate(numberPlate);
-        car.setAvailability(false);
+        car.setAvailability(true);
 
         return carRepository.save(car);
     }

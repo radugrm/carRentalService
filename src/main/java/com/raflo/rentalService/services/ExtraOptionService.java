@@ -13,6 +13,8 @@ public interface ExtraOptionService {
 
     ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum, boolean availability);
 
-    void changeCarAvailability (long id, boolean availability);
+    void changeExtraOptionAvailability (long id, boolean availability);
+
+    void deleteExtraOptionById(long id);
 
 }
