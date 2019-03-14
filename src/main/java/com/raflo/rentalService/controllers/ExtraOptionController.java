@@ -51,7 +51,7 @@ public class ExtraOptionController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteExtraOption (@ModelAttribute(DELETE_EXTRA_OPTION_FORM) DeleteExtraOptionFormDto form){
-        extraOptionService.deleteExtraOptionById(form.getId());
+        extraOptionService.deleteExtraOptionById(form.getExtraOptionId());
         return "redirect:/extras";
     }
 }

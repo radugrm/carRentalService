@@ -5,11 +5,11 @@ public class DeleteExtraOptionFormDto {
 
     private Long id;
 
-    public Long getId() {
+    public Long getExtraOptionId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setExtraOptionId(Long id) {
         this.id = id;
     }
 }
