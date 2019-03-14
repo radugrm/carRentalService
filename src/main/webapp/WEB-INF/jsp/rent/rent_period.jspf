@@ -1,14 +1,16 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-    <div class="col-md-6 mb-3">
-        <label for="start-date">Start Date</label>
-        <form:input path="startDate" type="date" class="form-control" id="start-date"
-                    value="${startDate.day}/${startDate.month}/${startDate.year}" required="" onblur="getStartDate()"/>
-        <form:button type="submit" id="submit-start-date-form-btn" class="d-none"/>
-    </div>
+<div class="col-md-6 mb-3">
+    <form:label path="startDate" for="start-date">Start Date</form:label>
+    <form:input path="startDate" id="start-date" cssClass="form-control" type="date"
+                value="${rentalForm.startDate}" pattern="dd-MM-yyyy" />
 
-    <div class="col-md-6 mb-3">
-        <label for="end-date">End Date</label>
-        <form:input path="endDate" type="date" class="form-control" id="end-date"
-                    value="${endDate.day}/${endDate.month}/${endDate.year}" required="" onblur="getEndDate()"/>
-        <form:button type="submit" id="submit-end-date-form-btn" class="d-none"/>
-    </div>
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <form:label path="endDate" for="end-date">Start Date</form:label>
+    <form:input path="endDate" id="end-date" cssClass="form-control" type="date"
+                value="${rentalForm.endDate}" pattern="dd-MM-yyyy" />
+
+</div>

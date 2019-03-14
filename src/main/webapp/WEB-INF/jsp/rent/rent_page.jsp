@@ -66,15 +66,6 @@
         document.getElementById('submit-rent-form-btn').click();
     }
 
-    function getStartDate() {
-        console.log("erwe");
-        document.getElementById('submit-start-date-form-btn').click();
-    }
-
-    function getEndDate() {
-        console.log("areteraa");
-        document.getElementById('submit-end-date-form-btn').click();
-    }
 
     function getCar() {
         console.log("bbb");

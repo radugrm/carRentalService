@@ -82,7 +82,7 @@ public class RentalController {
 
     private void processStartDate(NewRentalFormDto form, String date) {
         Optional<String> dateOpt = Optional.ofNullable(date);
-        if (dateOpt.isPresent()) {
+        if (dateOpt.isPresent() && (!date.isEmpty())) {
             LocalDate date1 = getLocalDate(date);
             form.setStartDate(date1);
         }
@@ -91,7 +91,7 @@ public class RentalController {
 
     private void processEndDate(NewRentalFormDto form, String date) {
         Optional<String> dateOpt = Optional.ofNullable(date);
-        if (dateOpt.isPresent()) {
+        if (dateOpt.isPresent() && (!date.isEmpty())) {
             LocalDate date1 = getLocalDate(date);
             form.setEndDate(date1);
         }

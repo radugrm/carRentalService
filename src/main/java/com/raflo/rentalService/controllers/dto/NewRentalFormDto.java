@@ -1,6 +1,7 @@
 package com.raflo.rentalService.controllers.dto;
 
 import com.raflo.rentalService.model.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ public class NewRentalFormDto {
     private CarCategoryEnum carCategory;
     private List<CarCategoryEnum> carCategoryOptions;
     private List<Car> carsByCategory;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate startDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate endDate;
     private String carMake;
     private String carModel;
