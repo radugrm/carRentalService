@@ -43,7 +43,7 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
 
 
     @Override
-    public ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum, boolean availability) {
-        return extraOptionRepository.findFirstByExtraOptionCategoryEnumAndAvailability(extraOptionCategoryEnum,availability);
+    public ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum) {
+        return extraOptionRepository.findFirstByExtraOptionCategoryEnumAndAvailability(extraOptionCategoryEnum,true);
     }
 }

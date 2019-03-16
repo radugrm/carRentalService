@@ -72,7 +72,7 @@ public class RentalController {
     private Set<ExtraOption> getValidExtraOptionSet(@ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
         Set<ExtraOption> extraOptionList = new HashSet<>();
         for (ExtraOptionCategoryEnum e : form.getExtraOptions()) {
-            extraOptionList.add(extraOptionService.findFirstAvailableExtraOptionByCategory(e, true));
+            extraOptionList.add(extraOptionService.findFirstAvailableExtraOptionByCategory(e));
         }
         return extraOptionList;
     }

@@ -11,7 +11,7 @@ public interface ExtraOptionService {
 
     ExtraOption createExtraOption(ExtraOptionCategoryEnum extraOptionCategoryEnum);
 
-    ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum, boolean availability);
+    ExtraOption findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum extraOptionCategoryEnum);
 
     void changeExtraOptionAvailability (long id, boolean availability);
 
