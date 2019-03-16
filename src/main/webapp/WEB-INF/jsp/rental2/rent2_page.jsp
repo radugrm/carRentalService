@@ -10,7 +10,7 @@
         <div class="row">
 
             <div class="col-md-5 mb-3">
-                <form:label path="client.cnp" for="cnp" cssClass="sr-only">Make</form:label>
+                <form:label path="client.cnp" for="cnp">CNP Client</form:label>
                 <form:input path="client.cnp" cssClass="form-control" id="cnp" type="text"
                             value="${rentalForm.client.cnp}"
                             placeholder="CNP" onblur="getName()"/>
@@ -86,7 +86,51 @@
                 </form:select>
             </div>
         </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-md-5 mb-3" >
+                <label for="extra-options">Extra Options</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 mb-3" id="extra-options">
+                <div class="custom-control custom-checkbox">
+                    <form:checkbox path="insurance" class="custom-control-input" id="car-insurance"/>
+                    <form:label path="insurance" class="custom-control-label"
+                                for="car-insurance">Car Insurance</form:label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <form:checkbox path="navigation" class="custom-control-input" id="navigation"/>
+                    <form:label path="navigation" class="custom-control-label" for="navigation">Navigation</form:label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <form:checkbox path="toddlerSeat" class="custom-control-input" id="toddler_seat"/>
+                    <form:label path="toddlerSeat" class="custom-control-label"
+                                for="toddler_seat">Toddler Seat</form:label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <form:checkbox path="infantSeat" class="custom-control-input" id="infant_seat"/>
+                    <form:label path="infantSeat" class="custom-control-label"
+                                for="infant_seat">Infant Seat</form:label>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                    <form:checkbox path="additionalDriver" class="custom-control-input" id="additional-driver"
+                                   onchange="toggleDisable(this)"/>
+                    <form:label path="additionalDriver" class="custom-control-label"
+                                for="additional-driver">Additional Driver</form:label>
+                </div>
+                <fieldset id="number-of-drivers" disabled>
+                    <div class="col-md-3 mb-1">
+                        <form:input path="additionalDrivers" type="text" id="disabledTextInput" class="form-control"
+                                    placeholder="0"/>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </form:form>
+
 
 </div>
 
@@ -96,9 +140,24 @@
         console.log("aaa");
         document.getElementById('submit-client-form-btn').click();
     }
+
     function getCar() {
         console.log("bbb");
         document.getElementById('submit-car-form-btn').click();
+    }
+
+    function toggleDisable(checkbox) {
+        var toggle = document.getElementById("number-of-drivers");
+        if (checkbox.checked) {
+            toggle.disabled = false;
+        } else {
+            toggle.disabled = true;
+        }
+
+    }
+
+    window.onload = function () {
+        toggleDisable(document.getElementById('additional-driver'));
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
