@@ -4,31 +4,45 @@ import com.raflo.rentalService.model.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class NewRentalFormDto {
     public static final String NEW_RENTAL_FORM = "rentalForm";
 
     private Client client;
-    private CarCategoryEnum carCategory;
-    private List<CarCategoryEnum> carCategoryOptions;
-    private List<Car> carsByCategory;
+
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate startDate;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate endDate;
+
+
+    private List<CarCategoryEnum> carCategoryOptions;
+    private CarCategoryEnum carCategory;
+    private List<Car> carsByCategory;
+
     private String carMake;
     private String carModel;
+
     private boolean insurance;
+    private boolean additionalDriver;
+    private int additionalDrivers;
+
     private boolean navigation;
     private boolean toddlerSeat;
     private boolean infantSeat;
-    private boolean additionalDriver;
-    private int additionalDrivers;
-    private List<ExtraOptionCategoryEnum> extraOptions;
+
+    public NewRentalFormDto() {
+        this.client = new Client();
+        this.carCategoryOptions= Arrays.asList(CarCategoryEnum.values());
+        this.carCategory= CarCategoryEnum.ECONOMY;
+        this.carsByCategory = new ArrayList<>();
+    }
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
@@ -38,16 +52,12 @@ public class NewRentalFormDto {
         this.endDate = endDate;
     }
 
-    public NewRentalFormDto() {
-        carCategoryOptions=new ArrayList<>();
-        for(CarCategoryEnum e:CarCategoryEnum.values()){
-            carCategoryOptions.add(e);
-        }
-    }
+
 
     public Client getClient() {
         return client;
     }
+
 
 
     public List<CarCategoryEnum> getCarCategoryOptions() {

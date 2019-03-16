@@ -8,7 +8,7 @@ public class FindClientDto {
     private String cnp;
     private String firstName;
     private String lastName;
-    private Client client;
+
 
     public String getCnp() {
         return cnp;
@@ -34,11 +34,5 @@ public class FindClientDto {
         this.lastName = lastName;
     }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
 }

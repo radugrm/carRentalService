@@ -17,6 +17,7 @@ public class RentalServiceImpl implements RentalService {
     @Autowired
     RentalRepository rentalRepository;
 
+
     @Override
     public Rental createRental(Client client, Car car, LocalDate startDate, LocalDate endDate, boolean insurance,
                                int additionalDrivers, Set<ExtraOption> extraOptions) {
@@ -45,7 +46,7 @@ public class RentalServiceImpl implements RentalService {
         int days = period.getDays();
         price = price*days;
         rental.setTotalPrice(price);
-        return rental;
+        return rentalRepository.save(rental);
     }
 
 

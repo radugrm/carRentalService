@@ -35,10 +35,7 @@ public class Rental {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany
     @JoinTable(name = "extraoptions_rental",
             joinColumns = @JoinColumn(name = "extraoption_id"),
             inverseJoinColumns = @JoinColumn(name = "rental_id")
