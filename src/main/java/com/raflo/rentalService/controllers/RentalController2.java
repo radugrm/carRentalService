@@ -55,16 +55,18 @@ public class RentalController2 {
         return "rental2/rent2_page";
     }
 
-    @PostMapping(value = "/cnp")
+    @PostMapping(value = "/refresh")
     public ModelAndView clientCnp(RedirectAttributes redirectAttrs, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
         if (clientService.findByCnp(form.getClient().getCnp()).isPresent()) {
             form.setClient(clientService.findByCnp(form.getClient().getCnp()).get());
-            redirectAttrs.addFlashAttribute(NEW_RENTAL_FORM, form);
+
         }
         CarCategoryEnum carCategoryEnum = form.getCarCategory();
         if (carService.getCarsByCategory(carCategoryEnum).isPresent()) {
             form.setCarsByCategory(carService.getCarsByCategory(carCategoryEnum).get());
+
         }
+        redirectAttrs.addFlashAttribute(NEW_RENTAL_FORM, form);
         return new ModelAndView("redirect:/rent2");
     }
 

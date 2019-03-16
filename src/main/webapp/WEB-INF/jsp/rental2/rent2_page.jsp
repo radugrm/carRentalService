@@ -6,7 +6,7 @@
         <h2>Rent form</h2>
 
     </div>
-    <form:form method="post" modelAttribute="rentalForm" action="/rent2/cnp">
+    <form:form method="post" modelAttribute="rentalForm" action="/rent2/refresh">
         <div class="row">
 
             <div class="col-md-5 mb-3">
@@ -33,14 +33,6 @@
             </div>
         </div>
 
-        <%--<div class="row">--%>
-        <%--<form:form cssClass="form-inline" method="post" action="/rent2/new" modelAttribute="client">--%>
-        <%--<form:hidden path="cnp"/>--%>
-        <%--<form:button type="submit" class="btn btn-primary btn-lg btn-block">--%>
-        <%--<i class="fa fa-trash" aria-hidden="true"></i>--%>
-        <%--</form:button>--%>
-        <%--</form:form>--%>
-        <%--</div>--%>
 
 
         <div class="row">
@@ -61,17 +53,18 @@
             <div class="col-md-5 mb-3">
                 <form:label path="carCategory" for="car-category">Car Category</form:label>
                 <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
-                             selected="true" onchange="getCar()">
-                    <c:forEach items="${rentalForm.carCategoryOptions}" var="category">
-                        <c:choose>
-                            <c:when test="${rentalForm.carCategory==category}">
-                                <form:option selected="true" value="${rentalForm.carCategory}">${category}</form:option>
-                            </c:when>
-                            <c:otherwise>
-                                <form:option value="${category}">${category}</form:option>
-                            </c:otherwise></c:choose>
-                    </c:forEach>
-                </form:select>
+                             selected="true" items = "${rentalForm.carCategoryOptions}" onchange="getCar()"/>
+
+                    <%--<c:forEach items="${rentalForm.carCategoryOptions}" var="category">--%>
+                        <%--<c:choose>--%>
+                            <%--<c:when test="${rentalForm.carCategory==category}">--%>
+                                <%--<form:option selected="true" value="${rentalForm.carCategory}">${category}</form:option>--%>
+                            <%--</c:when>--%>
+                            <%--<c:otherwise>--%>
+                                <%--<form:option value="${category}">${category}</form:option>--%>
+                            <%--</c:otherwise></c:choose>--%>
+                    <%--</c:forEach>--%>
+                <%--</form:select>--%>
                 <form:button type="submit" id="submit-car-form-btn" class="d-none"/>
             </div>
 
@@ -129,7 +122,16 @@
                 </fieldset>
             </div>
         </div>
+        <div class="row">
+            <%--<form:form cssClass="form-inline" method="post" action="/rent2/new" modelAttribute="client">--%>
+                <%--<form:hidden path="cnp"/>--%>
+                <%--<form:button type="submit" class="btn btn-primary btn-lg btn-block">--%>
+                    <%--<i class="fa fa-trash" aria-hidden="true"></i>--%>
+                <%--</form:button>--%>
+            <%--</form:form>--%>
+        </div>
     </form:form>
+
 
 
 </div>
