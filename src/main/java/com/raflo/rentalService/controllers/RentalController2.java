@@ -69,17 +69,16 @@ public class RentalController2 {
         redirectAttrs.addFlashAttribute(NEW_RENTAL_FORM, form);
         return new ModelAndView("redirect:/rent2");
     }
-
-    @PostMapping(value = "/new")
-
-    public String createRental(@ModelAttribute("client") Client client, @ModelAttribute(DATE_FORM_DTO) DateFormDto dateForm) {
-        Optional<Client> byCnp = clientService.findByCnp(client.getCnp());
-        if (byCnp.isPresent()) {
-            rentalService.createRental(byCnp.get(),
-                    new Car(), dateForm.getStartDate(), dateForm.getEndDate(),
-                    false, 0, new HashSet<>());
-        }
-
-        return "redirect:/rent2";
-    }
+//
+//    @PostMapping(value = "/new")
+//    public String createRental(@ModelAttribute("client") Client client, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
+//        Optional<Client> byCnp = clientService.findByCnp(client.getCnp());
+//        if (byCnp.isPresent()) {
+//            rentalService.createRental(byCnp.get(),
+//                    new Car(), form.getStartDate(), form.getEndDate(),
+//                    false, 0, new HashSet<>());
+//        }
+//
+//        return "redirect:/rent2";
+//    }
 }

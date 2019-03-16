@@ -50,9 +50,11 @@
 
 </div>
 <script type="application/javascript">
-    function getName() {
+    function refreshForm() {
         console.log("aaa");
-        document.getElementById('submit-client-form-btn').click();
+        var form = document.getElementById('rental-form');
+        form.action='/refresh';
+        form.submit();
     }
 
 
