@@ -1,7 +1,5 @@
 package com.raflo.rentalService.controllers;
 
-import com.raflo.rentalService.controllers.dto.DateFormDto;
-import com.raflo.rentalService.controllers.dto.FindClientDto;
 import com.raflo.rentalService.controllers.dto.NewRentalFormDto;
 import com.raflo.rentalService.model.*;
 import com.raflo.rentalService.services.CarService;
@@ -11,7 +9,6 @@ import com.raflo.rentalService.services.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,16 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import java.time.LocalDate;
 import java.util.*;
 
-import static com.raflo.rentalService.controllers.dto.DateFormDto.DATE_FORM_DTO;
-import static com.raflo.rentalService.controllers.dto.FindClientDto.FIND_CLIENT_FORM;
+
 import static com.raflo.rentalService.controllers.dto.NewRentalFormDto.NEW_RENTAL_FORM;
 
 @Controller
 @RequestMapping("/rent2")
-public class RentalController2 {
+public class RentalController {
 
     @Autowired
     ClientService clientService;
@@ -79,27 +74,29 @@ public class RentalController2 {
         Optional<Car> car = carService.getCarById(form.getCar().getId());
         ExtraOption navigation = extraOptionService
                 .findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.NAVIGATION);
-        ExtraOption infantSeat =extraOptionService
+        ExtraOption infantSeat = extraOptionService
                 .findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.INFANT_SEAT);
-        ExtraOption toddlerSeat =extraOptionService
+        ExtraOption toddlerSeat = extraOptionService
                 .findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.TODDLER_SEAT);
         if (form.isNavigation()) {
             extraOptions.add(navigation);
-            navigation.setAvailability(false);
+            extraOptionService.changeExtraOptionAvailability(navigation.getId(), false);
         }
         if (form.isInfantSeat()) {
             extraOptions.add(infantSeat);
-            infantSeat.setAvailability(false);
+            extraOptionService.changeExtraOptionAvailability(infantSeat.getId(), false);
+
         }
         if (form.isToddlerSeat()) {
             extraOptions.add(toddlerSeat);
-            toddlerSeat.setAvailability(false);
+            extraOptionService.changeExtraOptionAvailability(toddlerSeat.getId(), false);
+
         }
         if (client.isPresent() && car.isPresent()) {
             rentalService.createRental(client.get(),
                     car.get(), form.getStartDate(), form.getEndDate(),
                     form.isInsurance(), form.getAdditionalDrivers(), extraOptions);
-            carService.changeCarAvailability(car.get().getId(),false);
+            carService.changeCarAvailability(car.get().getId(), false);
         }
 
         return "redirect:/rent2";

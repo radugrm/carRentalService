@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-md-5 mb-3">
+        <form:label path="startDate" for="start-date">Start Date</form:label>
+        <form:input path="startDate" id="start-date" cssClass="form-control" type="date"
+                    value="${rentalForm.startDate}" pattern="dd-MM-yyyy"/>
+    </div>
+    <div class="col-md-5 mb-3">
+        <form:label path="endDate" for="end-date">End Date</form:label>
+        <form:input path="endDate" id="end-date" cssClass="form-control" type="date"
+                    value="${rentalForm.endDate}" pattern="dd-MM-yyyy"/>
+    </div>
+</div>

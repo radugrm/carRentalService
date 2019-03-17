@@ -1,0 +1,24 @@
+<div class="row">
+
+    <div class="col-md-5 mb-3">
+        <form:label path="client.cnp" for="cnp">CNP Client</form:label>
+        <form:input path="client.cnp" cssClass="form-control" id="cnp" type="text"
+                    value="${rentalForm.client.cnp}"
+                    placeholder="CNP" onblur="refreshForm()"/>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-5 mb-3">
+        <label for="firstName">First Name
+            <div id="firstName">${rentalForm.client.firstName}</div>
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 mb-3">
+        <label for="lastName">Last Name
+            <div id="lastName">${rentalForm.client.lastName}</div>
+        </label>
+    </div>
+</div>

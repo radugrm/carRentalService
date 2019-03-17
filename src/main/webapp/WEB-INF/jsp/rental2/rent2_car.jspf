@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-5 mb-3">
+        <form:label path="carCategory" for="car-category">Car Category</form:label>
+        <form:select class="custom-select d-block w-100" path="carCategory" id="car-category"
+                     selected="true" items="${rentalForm.carCategoryOptions}" onchange="refreshForm()"/>
+    </div>
+
+    <div class="col-md-5 mb-3">
+        <form:label path="carsByCategory" for="car-model">Car </form:label>
+        <form:select class="custom-select d-block w-100" path="car" id="car-model"
+                     multiple="false">
+            <c:forEach items="${rentalForm.carsByCategory}" var="car">
+                <form:option value="${car}">${car.make} ${car.model}</form:option>
+            </c:forEach>
+        </form:select>
+    </div>
+</div>

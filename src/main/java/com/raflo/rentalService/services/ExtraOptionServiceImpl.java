@@ -18,7 +18,9 @@ public class ExtraOptionServiceImpl implements  ExtraOptionService{
     @Override
     public void changeExtraOptionAvailability(long id, boolean availability) {
         if(extraOptionRepository.findById(id).isPresent()) {
-            extraOptionRepository.findById(id).get().setAvailability(availability);
+            ExtraOption extraOption = extraOptionRepository.findById(id).get();
+            extraOption.setAvailability(availability);
+            extraOptionRepository.save(extraOption);
         }
     }
 
