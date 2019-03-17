@@ -14,4 +14,8 @@ public interface RentalService {
                         int additionalDrivers, Set<ExtraOption> extraOptions);
 
     int getTotalPrice(Rental rental);
+
+    List<Rental> getAllRental();
+
+    void deleteRentalById(long id);
 }

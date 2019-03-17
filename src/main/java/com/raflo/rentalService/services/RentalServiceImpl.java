@@ -49,6 +49,15 @@ public class RentalServiceImpl implements RentalService {
         return rentalRepository.save(rental);
     }
 
+    @Override
+    public List<Rental> getAllRental() {
+        return rentalRepository.findAll();
+    }
+
+    @Override
+    public void deleteRentalById(long id) {
+        rentalRepository.deleteById(id);
+    }
 
     @Override
     public int getTotalPrice(Rental rental) {
