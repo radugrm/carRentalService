@@ -39,4 +39,9 @@ public class ClientServiceImpl implements ClientService {
     public Optional<Client> findByCnp(String cnp) {
         return clientRepository.findByCnp(cnp);
     }
+
+    @Override
+    public Optional<Client> findById(long id) {
+        return clientRepository.findById(id);
+    }
 }

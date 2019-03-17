@@ -14,5 +14,7 @@ public interface ClientService {
     void deleteClientById(Long id);
 
     Optional<Client> findByCnp(String cnp);
+
+    Optional<Client> findById(long id);
 }
 

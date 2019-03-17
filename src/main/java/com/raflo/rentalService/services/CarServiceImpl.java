@@ -35,11 +35,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public void changeCarAvailability(long id, boolean availability) {
         if(carRepository.findById(id).isPresent()) {
-            carRepository.findById(id).get().setAvailability(availability);
+            Car car = carRepository.findById(id).get();
+            car.setAvailability(availability);
+            carRepository.save(car);
         }
     }
-
-
 
     @Override
     public void deleteCarById(Long id) {
@@ -47,8 +47,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Optional<List<Car>> getCarsByCategory(CarCategoryEnum carCategoryEnum) {
-        return carRepository.findAllByCarCategory(carCategoryEnum);
+    public Optional<List<Car>> getAvailableCarsByCategory(CarCategoryEnum carCategoryEnum) {
+        return carRepository.findAllByAvailabilityAndCarCategory(true,carCategoryEnum);
     }
 
     @Override
@@ -56,8 +56,5 @@ public class CarServiceImpl implements CarService {
         return carRepository.findById(id);
     }
 
-    @Override
-    public Car getFirstAvailableCarByMakeAndModel(boolean availability, String make, String model) {
-        return carRepository.findFirstByAvailabilityAndMakeAndModel(availability,make,model);
-    }
+
 }

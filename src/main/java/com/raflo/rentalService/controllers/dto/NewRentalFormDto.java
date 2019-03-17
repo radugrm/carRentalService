@@ -16,18 +16,19 @@ public class NewRentalFormDto {
 
     private Client client;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
 
     private List<CarCategoryEnum> carCategoryOptions;
     private CarCategoryEnum carCategory;
-    private List<Car> carsByCategory;
+    private Car[] carsByCategory;
 
     private String carMake;
     private String carModel;
+    private Car car;
 
     private boolean insurance;
     private boolean additionalDriver;
@@ -39,9 +40,8 @@ public class NewRentalFormDto {
 
     public NewRentalFormDto() {
         this.client = new Client();
-        this.carCategoryOptions= Arrays.asList(CarCategoryEnum.values());
-        this.carCategory= CarCategoryEnum.ECONOMY;
-        this.carsByCategory = new ArrayList<>();
+        this.carCategoryOptions = Arrays.asList(CarCategoryEnum.values());
+        this.carCategory = CarCategoryEnum.ECONOMY;
     }
 
     public void setStartDate(LocalDate startDate) {
@@ -52,13 +52,73 @@ public class NewRentalFormDto {
         this.endDate = endDate;
     }
 
+    public Car getCar() {
+        return car;
+    }
 
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public void setCarCategoryOptions(List<CarCategoryEnum> carCategoryOptions) {
+        this.carCategoryOptions = carCategoryOptions;
+    }
+
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    public boolean isAdditionalDriver() {
+        return additionalDriver;
+    }
+
+    public void setAdditionalDriver(boolean additionalDriver) {
+        this.additionalDriver = additionalDriver;
+    }
+
+    public void setAdditionalDrivers(int additionalDrivers) {
+        this.additionalDrivers = additionalDrivers;
+    }
 
     public Client getClient() {
         return client;
     }
 
+    public boolean isNavigation() {
+        return navigation;
+    }
 
+    public boolean isInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(boolean insurance) {
+        this.insurance = insurance;
+    }
+
+    public void setNavigation(boolean navigation) {
+        this.navigation = navigation;
+    }
+
+    public boolean isToddlerSeat() {
+        return toddlerSeat;
+    }
+
+    public void setToddlerSeat(boolean toddlerSeat) {
+        this.toddlerSeat = toddlerSeat;
+    }
+
+    public boolean isInfantSeat() {
+        return infantSeat;
+    }
+
+    public void setInfantSeat(boolean infantSeat) {
+        this.infantSeat = infantSeat;
+    }
 
     public List<CarCategoryEnum> getCarCategoryOptions() {
         return carCategoryOptions;
@@ -68,14 +128,10 @@ public class NewRentalFormDto {
         this.client = client;
     }
 
-    public boolean getInsurance() {
-        return insurance;
-    }
 
     public int getAdditionalDrivers() {
-        if (!additionalDriver) return 0;
-        else
-            return additionalDrivers;
+
+        return additionalDrivers;
     }
 
 
@@ -83,16 +139,17 @@ public class NewRentalFormDto {
         this.carCategory = carCategory;
     }
 
-    public void setCarsByCategory(List<Car> carsByCategory) {
-        this.carsByCategory = carsByCategory;
-    }
 
     public CarCategoryEnum getCarCategory() {
         return carCategory;
     }
 
-    public List<Car> getCarsByCategory() {
+    public Car[] getCarsByCategory() {
         return carsByCategory;
+    }
+
+    public void setCarsByCategory(Car[] carsByCategory) {
+        this.carsByCategory = carsByCategory;
     }
 
     public LocalDate getStartDate() {
@@ -111,22 +168,6 @@ public class NewRentalFormDto {
         return carModel;
     }
 
-
-    public boolean getToddlerSeat() {
-        return toddlerSeat;
-    }
-
-    public boolean getInfantSeat() {
-        return infantSeat;
-    }
-
-    public boolean getAdditionalDriver() {
-        return additionalDriver;
-    }
-
-    public boolean getNavigation() {
-        return navigation;
-    }
 
     public List<ExtraOptionCategoryEnum> getExtraOptions() {
         List<ExtraOptionCategoryEnum> extraOptions = null;

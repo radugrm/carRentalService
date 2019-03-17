@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 
-    Optional<List<Car>> findAllByCarCategory(CarCategoryEnum carCategory);
+    Optional<List<Car>> findAllByAvailabilityAndCarCategory(boolean availability, CarCategoryEnum carCategory);
     Car findFirstByAvailabilityAndMakeAndModel(boolean availability, String make, String model);
 }

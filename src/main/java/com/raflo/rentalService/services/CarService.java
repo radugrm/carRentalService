@@ -10,7 +10,7 @@ public interface CarService {
 
     List<Car> getAllCars();
 
-    Optional<List<Car>> getCarsByCategory(CarCategoryEnum carCategoryEnum);
+    Optional<List<Car>> getAvailableCarsByCategory(CarCategoryEnum carCategoryEnum);
 
     Car createCar(String brand, String model, CarCategoryEnum carCategory, String numberPlate);
 
@@ -18,9 +18,8 @@ public interface CarService {
 
     Optional<Car> getCarById(long id);
 
-    Car getFirstAvailableCarByMakeAndModel(boolean availability, String make, String model);
-
     void changeCarAvailability (long id, boolean availability);
+
 
 
 }

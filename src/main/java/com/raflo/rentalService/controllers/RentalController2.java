@@ -63,37 +63,47 @@ public class RentalController2 {
 
         }
         CarCategoryEnum carCategoryEnum = form.getCarCategory();
-        if (carService.getCarsByCategory(carCategoryEnum).isPresent()) {
-            form.setCarsByCategory(carService.getCarsByCategory(carCategoryEnum).get());
-
+        if (carService.getAvailableCarsByCategory(carCategoryEnum).isPresent()) {
+            List<Car> cars = carService.getAvailableCarsByCategory(carCategoryEnum).get();
+            form.setCarsByCategory(cars.toArray(new Car[cars.size()]));
         }
+
         redirectAttrs.addFlashAttribute(NEW_RENTAL_FORM, form);
         return new ModelAndView("redirect:/rent2");
     }
 
     @PostMapping(value = "/new")
-    public String createRental(@ModelAttribute("client") Client client, @ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
-        Optional<Client> byCnp = clientService.findByCnp(client.getCnp());
-        Car car = carService.getFirstAvailableCarByMakeAndModel(true,form.getCarMake(), form.getCarModel());
+    public String createRental(@ModelAttribute(NEW_RENTAL_FORM) NewRentalFormDto form) {
         Set<ExtraOption> extraOptions = new HashSet<>();
-        if(form.getNavigation()){
-            extraOptions.add(extraOptionService.findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.NAVIGATION));
+        Optional<Client> client = clientService.findByCnp(form.getClient().getCnp());
+        Optional<Car> car = carService.getCarById(form.getCar().getId());
+        ExtraOption navigation = extraOptionService
+                .findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.NAVIGATION);
+        ExtraOption infantSeat =extraOptionService
+                .findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.INFANT_SEAT);
+        ExtraOption toddlerSeat =extraOptionService
+                .findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.TODDLER_SEAT);
+        if (form.isNavigation()) {
+            extraOptions.add(navigation);
+            navigation.setAvailability(false);
         }
-        if(form.getInfantSeat()){
-            extraOptions.add(extraOptionService.findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.INFANT_SEAT));
+        if (form.isInfantSeat()) {
+            extraOptions.add(infantSeat);
+            infantSeat.setAvailability(false);
         }
-        if(form.getToddlerSeat()){
-            extraOptions.add(extraOptionService.findFirstAvailableExtraOptionByCategory(ExtraOptionCategoryEnum.TODDLER_SEAT));
+        if (form.isToddlerSeat()) {
+            extraOptions.add(toddlerSeat);
+            toddlerSeat.setAvailability(false);
         }
-        if (byCnp.isPresent()) {
-            rentalService.createRental(byCnp.get(),car
-                    , form.getStartDate(), form.getEndDate(),
-                    form.getInsurance(), form.getAdditionalDrivers(), extraOptions);
+        if (client.isPresent() && car.isPresent()) {
+            rentalService.createRental(client.get(),
+                    car.get(), form.getStartDate(), form.getEndDate(),
+                    form.isInsurance(), form.getAdditionalDrivers(), extraOptions);
+            carService.changeCarAvailability(car.get().getId(),false);
         }
 
         return "redirect:/rent2";
     }
-
 
 
 }

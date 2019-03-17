@@ -56,10 +56,10 @@
 
             <div class="col-md-5 mb-3">
                 <form:label path="carsByCategory" for="car-model">Car </form:label>
-                <form:select class="custom-select d-block w-100" path="carsByCategory" id="car-model"
+                <form:select class="custom-select d-block w-100" path="car" id="car-model"
                              multiple="false">
                     <c:forEach items="${rentalForm.carsByCategory}" var="car">
-                        <form:option value="">${car.make} ${car.model}</form:option>
+                        <form:option value="${car}">${car.make} ${car.model}</form:option>
                     </c:forEach>
                 </form:select>
             </div>
@@ -109,8 +109,7 @@
         </div>
         <div class="row">
             <form:form cssClass="form-inline" method="post" action="/rent2/new" modelAttribute="rentalForm">
-                <form:button type="submit" class="btn btn-primary btn-lg btn-block">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <form:button type="submit" class="btn btn-primary btn-lg btn-block">Rent
                 </form:button>
             </form:form>
         </div>
